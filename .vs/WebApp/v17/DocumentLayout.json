@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\medico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\webapp\\vistas\\medico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\webapp\\vistas\\medico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\medico.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -62,8 +62,7 @@
               "RelativeToolTip": "WebApp\\Vistas\\Medico.aspx.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:21:43.085Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-04T21:21:43.085Z"
             },
             {
               "$type": "Document",
@@ -75,8 +74,7 @@
               "RelativeToolTip": "WebApp\\Vistas\\Usuario.aspx.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T20:15:59.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-04T20:15:59.701Z"
             },
             {
               "$type": "Document",
@@ -88,8 +86,7 @@
               "RelativeToolTip": "WebApp\\Vistas\\Usuario.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-08-04T20:09:15.077Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-04T20:09:15.077Z"
             },
             {
               "$type": "Document",
@@ -101,8 +98,7 @@
               "RelativeToolTip": "WebApp\\Vistas\\Home.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-08-04T16:39:11.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-04T16:39:11.971Z"
             },
             {
               "$type": "Document",

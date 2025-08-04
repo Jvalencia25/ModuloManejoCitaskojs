@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\webapp\\vistas\\medico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\medico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\webapp\\vistas\\usuario.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\usuario.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\webapp\\vistas\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\webapp\\scripts\\viewmodels\\loginviewmodel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\scripts\\viewmodels\\loginviewmodel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\webapp\\vistas\\usuario.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\usuario.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\webapp\\vistas\\medico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\medico.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\webapp\\vistas\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\webapp\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\webapp\\contact.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
@@ -27,16 +31,12 @@
       "RelativeMoniker": "D:0:0:{071D8D6C-F784-480E-9224-CFA0D49FCF99}|BackGestion\\BackGestion.csproj|solutionrelative:backgestion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\webapp\\vistas\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\vistas\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{071D8D6C-F784-480E-9224-CFA0D49FCF99}|BackGestion\\BackGestion.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\backgestion\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{071D8D6C-F784-480E-9224-CFA0D49FCF99}|BackGestion\\BackGestion.csproj|solutionrelative:backgestion\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{071D8D6C-F784-480E-9224-CFA0D49FCF99}|BackGestion\\BackGestion.csproj|c:\\users\\admin\\documents\\codes\\modulomanejocitaskojs\\backgestion\\models\\cita.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{071D8D6C-F784-480E-9224-CFA0D49FCF99}|BackGestion\\BackGestion.csproj|solutionrelative:backgestion\\models\\cita.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\webapp\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{0716B5A4-44DC-48D6-9D36-F2AE0B01B3BB}|WebApp\\WebApp.csproj|solutionrelative:webapp\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,11 +46,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "Usuario.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Vistas\\Usuario.aspx.cs",
+              "RelativeDocumentMoniker": "WebApp\\Vistas\\Usuario.aspx.cs",
+              "ToolTip": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Vistas\\Usuario.aspx.cs",
+              "RelativeToolTip": "WebApp\\Vistas\\Usuario.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T20:15:59.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Usuario.aspx",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Vistas\\Usuario.aspx",
+              "RelativeDocumentMoniker": "WebApp\\Vistas\\Usuario.aspx",
+              "ToolTip": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Vistas\\Usuario.aspx",
+              "RelativeToolTip": "WebApp\\Vistas\\Usuario.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-08-04T20:09:15.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Home.aspx",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Vistas\\Home.aspx",
               "RelativeDocumentMoniker": "WebApp\\Vistas\\Home.aspx",
@@ -63,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "medico.aspx",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Vistas\\medico.aspx",
               "RelativeDocumentMoniker": "WebApp\\Vistas\\medico.aspx",
@@ -76,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Home.aspx.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Vistas\\Home.aspx.cs",
               "RelativeDocumentMoniker": "WebApp\\Vistas\\Home.aspx.cs",
@@ -89,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\BackGestion\\Program.cs",
               "RelativeDocumentMoniker": "BackGestion\\Program.cs",
@@ -97,11 +123,12 @@
               "RelativeToolTip": "BackGestion\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T15:55:39.383Z"
+              "WhenOpened": "2025-08-04T15:55:39.383Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "CitasController.cs",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\BackGestion\\Controllers\\CitasController.cs",
               "RelativeDocumentMoniker": "BackGestion\\Controllers\\CitasController.cs",
@@ -113,19 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Cita.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\BackGestion\\Models\\Cita.cs",
-              "RelativeDocumentMoniker": "BackGestion\\Models\\Cita.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\BackGestion\\Models\\Cita.cs",
-              "RelativeToolTip": "BackGestion\\Models\\Cita.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T15:56:33.362Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Contact.aspx",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Contact.aspx",
               "RelativeDocumentMoniker": "WebApp\\Contact.aspx",
@@ -133,11 +148,12 @@
               "RelativeToolTip": "WebApp\\Contact.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-08-04T14:51:59.015Z"
+              "WhenOpened": "2025-08-04T14:51:59.015Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Site.Master",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Site.Master",
               "RelativeDocumentMoniker": "WebApp\\Site.Master",
@@ -146,25 +162,6 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-08-04T14:52:08.063Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "loginViewModel.js",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Scripts\\viewmodels\\loginViewModel.js",
-              "RelativeDocumentMoniker": "WebApp\\Scripts\\viewmodels\\loginViewModel.js",
-              "ToolTip": "C:\\Users\\admin\\Documents\\Codes\\ModuloManejoCitaskojs\\WebApp\\Scripts\\viewmodels\\loginViewModel.js",
-              "RelativeToolTip": "WebApp\\Scripts\\viewmodels\\loginViewModel.js",
-              "ViewState": "AgIAACMAAAAAAAAAAAAQwC8AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-08-04T18:31:19.512Z",
               "EditorCaption": ""
             }
           ]

@@ -51,5 +51,14 @@ namespace BackGestion.Controllers
 
             return Ok(nombre);
         }
+
+        [HttpGet("medicos/{especialidad}")]
+        public async Task<IActionResult> ObtenerMedicosPorEspecialidad(string especialidad)
+        {
+            var medicos = await _usuarioService.ObtenerMedicosPorEspecialidad(especialidad);
+            if (medicos == null) return NotFound();
+
+            return Ok(medicos);
+        }
     }
 }

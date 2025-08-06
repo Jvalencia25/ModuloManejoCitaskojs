@@ -139,6 +139,14 @@ namespace BackGestion.Services
             return null;
         }
 
+        public async Task<object?> ObtenerMedicosPorEspecialidad(string especialidad)
+        {
+            return await _context.Medicos
+                .Include(m => m.Especialidad)
+                .Where(m => m.Especialidad.ToString().ToLower() == especialidad.ToLower())
+                .ToListAsync();
+        }
+
         public int CalcularEdad(DateOnly fecha)
         {
             var hoy = DateOnly.FromDateTime(DateTime.Today);

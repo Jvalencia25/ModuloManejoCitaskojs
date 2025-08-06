@@ -30,7 +30,7 @@ namespace BackGestion.Models
 
         [Required]
         [Column("hora")]
-        public TimeSpan Hora { get; set; }
+        public TimeOnly Hora { get; set; }
 
         [Required]
         [Column("especialidad")]

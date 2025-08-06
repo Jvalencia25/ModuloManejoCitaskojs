@@ -1,18 +1,31 @@
 ﻿using BackGestion.Models;
+using BackGestion.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace BackGestion.Controllers
 {
-    /*
     [ApiController]
     [Route("api/[controller]")]
     public class CitasController : ControllerBase
     {
-        private static List<Cita> citas = new List<Cita>();
-        private static int currentId = 1;
+        private readonly CitaService _citaService;
+        public CitasController(CitaService citaService)
+        {
+            _citaService = citaService;
+        }
 
+        [HttpGet("disponibilidad")]
+        public async Task<IActionResult> ObtenerDisponibilidad([FromQuery] long idMedico, [FromQuery] DateOnly fecha)
+        {
+            var result = await _citaService.VerDisponibilidad(fecha, idMedico);
+            if (result == null || !result.Any()) NotFound();
+
+            return Ok(result);
+        }
+
+        /*
         [HttpGet]
         public ActionResult<List<Cita>> Get() => citas;
 
@@ -55,9 +68,10 @@ namespace BackGestion.Controllers
             citas.Remove(cita);
             return NoContent();
         }
+        */
         
 
     }
-    */
+    
 }
 

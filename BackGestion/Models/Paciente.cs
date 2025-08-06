@@ -34,8 +34,6 @@ namespace BackGestion.Models
         [Required]
         [Column("password")]
         public string Password { get; set; } = string.Empty;
-
-        public ICollection<Cita>? Citas { get; set; }
     }
 }
 

@@ -38,8 +38,6 @@ namespace BackGestion.Models
         [Column("id_especialidad")]
         public int IdEspecialidad { get; set; }
 
-        public ICollection<Cita>? Citas { get; set; }
-
         [ForeignKey("IdEspecialidad")]
         public Especialidad Especialidad { get; set; }
     }

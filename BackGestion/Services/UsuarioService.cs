@@ -102,7 +102,9 @@ namespace BackGestion.Services
             }
             else if (tipo == "medico")
             {
-                var medico = await _context.Medicos.FirstOrDefaultAsync(p => p.Id == id);
+                var medico = await _context.Medicos
+                    .Include(m => m.Especialidad)
+                    .FirstOrDefaultAsync(m => m.Id == id);
 
                 if (medico == null) return null;
 

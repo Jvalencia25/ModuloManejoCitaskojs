@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Full",
+    "Projects": [
+      {
+        "Path": "BackGestion\\BackGestion.csproj",
+        "Action": "Start",
+        "DebugTarget": "IIS Express"
+      },
+      {
+        "Path": "WebApp\\WebApp.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

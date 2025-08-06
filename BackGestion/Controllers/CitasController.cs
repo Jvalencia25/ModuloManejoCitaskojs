@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace BackGestion.Controllers
 {
+    /*
     [ApiController]
     [Route("api/[controller]")]
     public class CitasController : ControllerBase
@@ -56,4 +58,6 @@ namespace BackGestion.Controllers
         
 
     }
+    */
 }
+

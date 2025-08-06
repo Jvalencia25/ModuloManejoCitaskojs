@@ -1,0 +1,21 @@
+[
+  {
+    "Name": "Back Only",
+    "Projects": [
+      {
+        "Path": "BackGestion\\BackGestion.csproj",
+        "Action": "Start",
+        "DebugTarget": "IIS Express"
+      }
+    ]
+  },
+  {
+    "Name": "Front Only",
+    "Projects": [
+      {
+        "Path": "WebApp\\WebApp.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

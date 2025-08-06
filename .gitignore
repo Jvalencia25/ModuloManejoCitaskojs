@@ -10,6 +10,10 @@
 **/*.log.*
 *.log
 *.db
+*.user
+*.suo
+*.cache
+*.pdb
 .vs/
 Publish/
 /.vs

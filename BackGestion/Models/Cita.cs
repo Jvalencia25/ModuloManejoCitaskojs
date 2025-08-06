@@ -32,13 +32,6 @@ namespace BackGestion.Models
         [Column("hora")]
         public TimeOnly Hora { get; set; }
 
-        [Required]
-        [Column("especialidad")]
-        public string Especialidad { get; set; } = string.Empty;
-
-        [Required]
-        [Column("duracion")]
-        public int Duracion { get; set; }
     }
 }
 

@@ -134,7 +134,7 @@ namespace BackGestion.Services
         public async Task<object?> ObtenerUsuarioPorIdAsync(long id, string tipo)
         {
             if (tipo == "paciente") return await _context.Pacientes.FindAsync(id);
-            else if (tipo == "medico") return await _context.Medicos.FindAsync(id);
+            else if (tipo == "medico") return await _context.Medicos.Include(m => m.Especialidad).FirstOrDefaultAsync(m => m.Id == id);
 
             return null;
         }
@@ -143,7 +143,7 @@ namespace BackGestion.Services
         {
             return await _context.Medicos
                 .Include(m => m.Especialidad)
-                .Where(m => m.Especialidad.ToString().ToLower() == especialidad.ToLower())
+                .Where(m => m.Especialidad.Nombre.ToLower() == especialidad.ToLower())
                 .ToListAsync();
         }
 

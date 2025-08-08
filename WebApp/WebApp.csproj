@@ -160,7 +160,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\knockout-3.5.1.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\viewmodels\loginViewModel.js" />
+    <Content Include="Scripts\viewmodels\homeViewModel.js" />
     <Content Include="Scripts\viewmodels\medicoViewModel.js" />
     <Content Include="Scripts\viewmodels\usuarioViewModel.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />

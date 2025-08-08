@@ -16,7 +16,7 @@
                 <h1 class="text-center mb-4">Bienvenido</h1>
 
                 <h2 class ="text-center mb-4">Iniciar Sesión</h2>
-                <div class="containter" data-bind="with: login">
+                <div class="container" data-bind="with: login">
 
                     <div class="mb-3">
                         <label for="id" class="form-label">Número de identificación</label>
@@ -28,23 +28,38 @@
                         <input class="form-control" placeholder="Contraseña" type="password" data-bind="value: password" />
                     </div>
 
-                    <button data-bind="click: loginUser" class="btn btn-primary w-100">Ingresar</button>
-                
-
-                    <div class="text-center mt-3">
-                        <p>¿No tienes cuenta?</p>
-                        <button type="button" class="btn btn-link" data-bind="click: toggleRegistro">Regístrate</button>
+                    <div class="mb-3">
+                        <label class="form-label">Tipo de usuario:</label>
+                        <select class="form-select" data-bind="value: tipoUsuario">
+                            <option value="paciente">Paciente</option>
+                            <option value="medico">Médico</option>
+                        </select>
                     </div>
 
-                    <div data-bind="visible: mostrarRegistro" class="mt-3">
+                    <button data-bind="click: iniciarSesion" class="btn btn-primary w-100">Ingresar</button>
+
+                </div> <div class="text-center mt-3">
+                    <p>¿No tienes cuenta?</p>
+                    <button type="button" class="btn btn-link" data-bind="click: toggleRegistro">Regístrate</button>
+                </div>
+
+                <div data-bind="visible: mostrarRegistro" class="mt-3">
+
+                    <div class="container" data-bind="with: registro">
                         <h2 class="text-center mb-4">Registrarse</h2>
 
-                        <form data-bind="submit: registrarUsuario">
+                        <form>
                             <div class="mb-3">
                                 <label class="form-label">Tipo de usuario:</label>
                                 <select class="form-select" data-bind="value: tipoUsuario">
                                     <option value="paciente">Paciente</option>
                                     <option value="medico">Médico</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3" data-bind="visible: tipoUsuario() === 'medico'">
+                                <label class="form-label">Especialidad</label>
+                                <select class="form-select" data-bind="options: especialidades, value: login.especialidadSeleccionada, optionsCaption: 'Seleccione una especialidad'">
                                 </select>
                             </div>
 
@@ -93,13 +108,14 @@
                                 <input type="password" class="form-control" data-bind="value: passwordRegistro" />
                             </div>
 
-                            <button type="submit" class="btn btn-success w-100 mt-2">Registrarse</button>
+                            <button data-bind="click: registrar" type="submit" class="btn btn-success w-100 mt-2">Registrarse</button>
                         </form>
                     </div>
-                   </div>
+                </div>
             </div>
         </div>
 
-        <script src="/Scripts/viewmodels/loginViewModel.js"></script>
+        <script src="/Scripts/viewmodels/homeViewModel.js"></script>
     </body>
 </html>
+```

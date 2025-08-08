@@ -18,3 +18,5 @@
 Publish/
 /.vs
 *.user
+/WebApp/bin
+/WebApp/obj

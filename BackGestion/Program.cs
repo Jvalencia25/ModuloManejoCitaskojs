@@ -27,7 +27,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:puertoWebForms") // cambiar esto
+        policy.WithOrigins("https://localhost:44387") // cambiar esto
               .AllowAnyHeader()
               .AllowAnyMethod();
     });

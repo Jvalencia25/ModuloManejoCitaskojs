@@ -12,6 +12,36 @@ function LoginForm() {
             TipoUsuario: self.tipoUsuario()
         };
         console.log({ login: body });
+
+        fetch("https://localhost:44345/api/Usuarios/Login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error en el inicio de sesión");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("respuesta API:", data);
+
+                if (body.TipoUsuario === "medico") {
+                    window.location.href = "/Vistas/Medico.aspx";
+                }
+                else if (body.TipoUsuario === "paciente") {
+                    window.location.href = "/Vistas/paciente.aspx";
+                }
+                else alert("Tipo de usuario no reconocido");
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Usuario o contraseña incorrectos")
+            })
+    
     };
 }
 
@@ -38,6 +68,57 @@ function RegistroForm() {
 
 
     self.registrar = function () {
+
+        if (!self.idRegistro || !!/^[0-9]+$/.test(self.idRegistro)) {
+            alert("Número de identificación no válido");
+            return;
+        }
+
+        if (!self.nombre || self.nombre.trim().length < 3) {
+            alert("Nombre no válido");
+            return;
+        }
+
+        const hoy = new Date().toISOString().split('T')[0];
+
+        if (!self.fechaNacimiento || self.fechaNacimiento > hoy) {
+            alert("Fecha no válida");
+            return;
+        }
+
+        if (self.tipoDocumento != "cc" &&
+            self.tipoDocumento != "rc" &&
+            self.tipoDocumento != "ti" &&
+            self.tipoDocumento != "ce" &&
+            self.tipoDocumento != "pa") {
+
+            alert("Tipo de documento no válido");
+            return;
+        }
+
+        if (self.tipoUsuario != "medico" && self.tipoUsuario != "paciente") {
+            alert("Tipo de usuario no válido");
+            return;
+        }
+
+        if (self.genero != "m" &&
+            self.genero != "f" &&
+            self.genero != "o") {
+
+            alert("Género no válido");
+            return;
+        }
+
+        if (!self.celular || !!/^[0-9]+$/.test(self.celular)) {
+            alert("Número de identificación no válido");
+            return;
+        }
+
+        if (!self.nombre || self.nombre.trim().length < 6) {
+            alert("La contraseña no es segura");
+            return;
+        }
+
         const body = {
             Id : self.idRegistro(),
             Nombre : self.nombre(),

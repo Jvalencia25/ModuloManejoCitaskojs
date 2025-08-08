@@ -11,9 +11,12 @@ namespace BackGestion.Controllers
     {
         private readonly UsuarioService _usuarioService;
 
-        public UsuariosController(UsuarioService usuarioService)
+        private readonly EspecialidadService _especialidadService;
+
+        public UsuariosController(UsuarioService usuarioService, EspecialidadService especialidadService)
         {
             _usuarioService = usuarioService;
+            _especialidadService = especialidadService;
         }
 
         [HttpPost("Registro")]
@@ -59,6 +62,15 @@ namespace BackGestion.Controllers
             if (medicos == null) return NotFound();
 
             return Ok(medicos);
+        }
+
+        [HttpGet("especialidades")]
+        public async Task<IActionResult> ObtenerEspecialidades()
+        {
+            var especialidades = await _especialidadService.ObtenerEspecialidad();
+            if (especialidades  == null) return NotFound();
+
+            return Ok(especialidades);
         }
     }
 }

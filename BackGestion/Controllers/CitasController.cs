@@ -28,7 +28,7 @@ namespace BackGestion.Controllers
 
         
 
-        [HttpPost("agendar")]
+        [HttpPost]
         public async Task<IActionResult> AgendarCita([FromBody] AgendarCitaDTO data)
         {
             var resultado = await _citaService.AgendarCita(data);

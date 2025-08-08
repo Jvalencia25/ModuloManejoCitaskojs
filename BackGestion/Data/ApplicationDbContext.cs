@@ -10,5 +10,6 @@ namespace BackGestion.Data
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Cita> Citas { get; set; } 
+        public DbSet<Especialidad> Especialidades { get; set; }
     }
 }

@@ -86,9 +86,12 @@ namespace BackGestion.Services
 
         public async Task<object?> VerDisponibilidad(DateOnly fecha, long idMedico)
         {
+            //Valida si es fecha anterior
+            if (fecha <= DateOnly.FromDateTime(DateTime.Now)) return "No hay disponibilidad";
+
             //valida si es domingo
             var fechaDateTime = fecha.ToDateTime(TimeOnly.MinValue);
-            if (fechaDateTime.DayOfWeek == DayOfWeek.Sunday) return "No disponibilidad";
+            if (fechaDateTime.DayOfWeek == DayOfWeek.Sunday) return "No hay disponibilidad";
 
             var medico = await _context.Medicos
                 .Include(m => m.Especialidad)
@@ -139,6 +142,9 @@ namespace BackGestion.Services
 
         public async Task<bool> ValidarDisponibilidad(long idMedico, DateOnly fecha, TimeOnly hora)
         {
+            //Valida si es fecha anterior
+            if (fecha <= DateOnly.FromDateTime(DateTime.Now)) return false;
+            
             //valida si es domingo
             var fechaDateTime = fecha.ToDateTime(TimeOnly.MinValue);
             if (fechaDateTime.DayOfWeek == DayOfWeek.Sunday) return false;

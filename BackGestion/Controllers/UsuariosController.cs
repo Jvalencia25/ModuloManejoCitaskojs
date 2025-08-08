@@ -19,7 +19,7 @@ namespace BackGestion.Controllers
             _especialidadService = especialidadService;
         }
 
-        [HttpPost("Registro")]
+        [HttpPost]
         public async Task<IActionResult> RegistrarUsuario([FromBody] UsuarioRegistroDTO data)
         {
             var error = await _usuarioService.RegistrarUsuarioAsync(data);
@@ -28,7 +28,7 @@ namespace BackGestion.Controllers
             return Ok("Usuario registrado correctamente");
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UsuarioLoginDTO data)
         {
             var result = await _usuarioService.LoginAsync(data.Id, data.Password, data.TipoUsuario);
@@ -47,7 +47,7 @@ namespace BackGestion.Controllers
         }
 
         [HttpGet("{id}/nombre")]
-        public async Task<IActionResult> ObtenerNombre(long id, [FromQuery] string tipo)
+        public async Task<IActionResult> ObtenerNombrePorId(long id, [FromQuery] string tipo)
         {
             var nombre = await _usuarioService.ObtenerNombrePorIdAsync(id, tipo);
             if (nombre == null) return NotFound();
@@ -55,7 +55,7 @@ namespace BackGestion.Controllers
             return Ok(nombre);
         }
 
-        [HttpGet("Medicos/{especialidad}")]
+        [HttpGet("medicos/{especialidad}")]
         public async Task<IActionResult> ObtenerMedicosPorEspecialidad(string especialidad)
         {
             var medicos = await _usuarioService.ObtenerMedicosPorEspecialidad(especialidad);

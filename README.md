@@ -12,34 +12,44 @@ Pequeño módulo de gestión de citas
 
 
 
+## Backend
 
+### Base de datos (Postgres)
 
-## API
+![alt text](./GraficoSQLDB.png "Gráfico relacional SQL de la base de datos")
 
-#### Usuarios
+### API
 
-```http
-/api/usuarios
-```
-
-| Función | HTTP     |  Ruta |Descripción                |
-| :-------- | :------- | :------- | :------------------------- |
-| `registro` | `POST` |/registro |Registro (sirve para ambos tipos de usuarios), devuelve objeto usuario |
-| `login` | `PUT` |/login |Inicio de sesión (sirve para ambos tipos de usuarios), devuelve objetousuario |
-| `buscarPorId` | `GET` | /{id}|Obtener usuario por id |
-
-#### Citas
+##### Usuarios
 
 ```http
-  /api/citas
+/api/Usuarios
 ```
 
-| Función | HTTP     |  Ruta |Descripción                |
-| :-------- | :------- | :------- | :------------------------- |
-| `agendar`      | `POST` | |Agendar una cita |
-| `{id} borrarCita`      | `DELETE` | /{id_cita}|Eliminar una cita |
-| `rango`      | `GET` |/rango?desde=YYYY-MM-DD&hasta=YYYY-MM-DD |Buscar citas en un rango de fechas |
-| `usuario/{id}`      | `GET` | /usuario/{id}|Buscar citas por usuario |
+| Función | HTTP     |  Ruta |  Entrada |Descripción                |
+| :----- | :------- | :------- | :--------------- |:------------------------- |
+| `RegistrarUsuario` | `POST` | |Id, Nombre, FechaNac ("YYYY-MM-DD"), TipoDoc (cc/ti/ce/rc/pa), Genero(m/f/o), celular, Password, TipoUsuario(paciente/medico), IdEspecialidad (solo si es médico)|Registro (sirve para ambos tipos de usuarios) ||
+| `Login` | `POST` |/Login |Id, Password, TipoUsuario (paciente/medico)|Inicio de sesión (sirve para ambos tipos de usuarios), devuelve objeto usuario |
+| `ObtenerUsuarioPorId` | `GET` | /{id}|(Query) ?tipo={paciente/medico}|Obtener usuario por id |
+| `ObtenerNombrePorId` | `GET` | /{id}/nombre|(Query) ?tipo={paciente/medico}|Obtener nombre de usuario por id |
+| `ObtenerMedicosPorEspecialidad` | `GET` | /{NombreEspecialidad}|NombreEspecialidad|Obtener lista de médicos por especialidad |
+| `ObtenerEspecialidades` | `GET` |/especialidades ||Obtener todas las especialidades |
+
+
+##### Citas
+
+```http
+  /api/Citas
+```
+
+| Función | HTTP     |  Ruta |  Entrada |Descripción                |
+| :----- | :------- | :------- | :--------------- |:------------------------- |
+| `ObtenerDisponibilidad`| `GET` | /disponibilidad|(Query) ?idMedico={idmedico}&fecha=YYYY-MM-DD|Ver horarios disponibles para agendar cita |
+| `agendar`| `POST` | |IdPac, IdMed, FechaCita("YYYY-MM-DD"), Hora("HH-mm")|Agendar una cita |
+| `ObtenerCitas`| `GET` | |(Query?) ?fechaDesde=YYYY-MM-DD&fechaHasta=YYYY-MM-DD|Obtener citas, usar query para filtrar por fechas |
+| `ObtenerCitasPorPaciente`| `GET` | /paciente/{idPaciente}|IdPaciente|Obtener citas asociadas a un paciente |
+| `DeleteCita`      | `DELETE` | /{id_cita}|IdCita|Eliminar una cita |
+
 
 
 

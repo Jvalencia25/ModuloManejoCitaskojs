@@ -26,8 +26,6 @@ namespace BackGestion.Controllers
             return Ok(result);
         }
 
-        
-
         [HttpPost]
         public async Task<IActionResult> AgendarCita([FromBody] AgendarCitaDTO data)
         {
@@ -38,8 +36,8 @@ namespace BackGestion.Controllers
         }
 
         
-        [HttpGet]
-       public async Task<IActionResult> GetCitas([FromQuery] DateOnly? fechaDesde, [FromQuery] DateOnly? fechaHasta)
+       [HttpGet]
+       public async Task<IActionResult> ObtenerCitas([FromQuery] DateOnly? fechaDesde, [FromQuery] DateOnly? fechaHasta)
         {
 
             if (fechaDesde.HasValue && fechaHasta.HasValue)
@@ -65,7 +63,7 @@ namespace BackGestion.Controllers
         }
 
         [HttpGet("paciente/{idPaciente}")]
-        public async Task<ActionResult<List<CitaDTO>>> GetCitasPorPaciente(long idPaciente)
+        public async Task<ActionResult<List<CitaDTO>>> ObtenerCitasPorPaciente(long idPaciente)
         {
             var citas = await _citaService.ObtenerCitasPorUsuario(idPaciente);
             return Ok(citas);

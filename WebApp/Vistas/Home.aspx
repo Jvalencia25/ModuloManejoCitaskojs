@@ -51,7 +51,7 @@
                         <form>
                             <div class="mb-3">
                                 <label class="form-label">Tipo de usuario:</label>
-                                <select class="form-select" data-bind="value: tipoUsuario">
+                                <select id="selMedPac" class="form-select" data-bind="value: tipoUsuario">
                                     <option value="paciente">Paciente</option>
                                     <option value="medico">Médico</option>
                                 </select>
@@ -69,13 +69,13 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" data-bind="value: fechaNacimiento" required/>
+                                <label class="form-label" >Fecha de nacimiento</label>
+                                <input type="date" id="fechaNacimiento" class="form-control" data-bind="value: fechaNacimiento" required/>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Tipo de documento</label>
-                                <select class="form-select" data-bind="value: tipoDocumento" required>
+                                <select id="seltipoDoc" class="form-select" data-bind="value: tipoDocumento" required>
                                     <option value="cc">Cédula de ciudadanía</option>
                                     <option value="rc">Registro civil</option>
                                     <option value="ti">Tarjeta de identidad</option>

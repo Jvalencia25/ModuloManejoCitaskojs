@@ -67,4 +67,65 @@ function homeViewModel() {
     
 }
 
-ko.applyBindings( homeViewModel() );
+ko.applyBindings(homeViewModel());
+
+const fechaNacInput = document.getElementById("fechaNacimiento");
+const tipoDocSelect = document.getElementById("seltipoDoc");
+const rolSelect = document.getElementById("selMedPac");
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    //Bloquear fechas posteriores
+    const hoy = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
+    fechaNacInput.max = hoy;
+
+   
+});
+
+//Bloquear documentos por edad
+fechaNacInput.addEventListener("change", () => {
+    const edad = calcularEdad(fechaNacInput.value);
+    const opcionesDoc = tipoDocSelect.options;
+    const opcionesRol = rolSelect.options;
+
+    if (edad < 18) {
+        for (let i = 0; i < opcionesDoc.length; i++) {
+            const opcion = opcionesDoc[i];
+            opcion.disabled = (edad < 18 && (opcion.value === "cc" || opcion.value === "ce"));
+            if (opcion.disabled && tipoDocSelect.value === opcion.value) {
+                tipoDocSelect.value = "ti";
+            }
+        }
+
+        for (let i = 0; i < opcionesRol.length; i++) {
+            const opcion = opcionesRol[i];
+            opcion.disabled = (edad < 18 && opcion.value === "medico");
+            if (opcion.disabled && rolSelect.value === opcion.value) {
+                rolSelect.value = "paciente";
+            }
+        }
+    }
+
+    else {
+        for (let i = 0; i < opcionesDoc.length; i++) {
+            const opcion = opcionesDoc[i];
+            opcion.disabled = (edad >= 18 && (opcion.value === "rc" || opcion.value === "ti"));
+            if (opcion.disabled && tipoDocSelect.value === opcion.value) {
+                tipoDocSelect.value = "cc";
+            }
+        }
+    }
+
+});
+
+
+function calcularEdad(fechaNacStr) {
+    const hoy = new Date();
+    const fechaNac = new Date(fechaNacStr);
+    let edad = hoy.getFullYear() - fechaNac.getFullYear();
+    const mes = hoy.getMonth() - fechaNac.getMonth();
+
+    if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) edad--;
+
+    return edad;
+}

@@ -20,3 +20,4 @@ Publish/
 *.user
 /WebApp/bin
 /WebApp/obj
+/WebApp/obj

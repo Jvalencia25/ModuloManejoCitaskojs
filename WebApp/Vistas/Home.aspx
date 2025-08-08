@@ -59,7 +59,11 @@
 
                             <div class="mb-3" data-bind="visible: tipoUsuario() === 'medico'">
                                 <label class="form-label">Especialidad</label>
-                                <select class="form-select" data-bind="options: especialidades, value: login.especialidadSeleccionada, optionsCaption: 'Seleccione una especialidad'">
+                                <select class="form-select" data-bind="options: especialidades, 
+                                                                       optionsText: 'nombre',
+                                                                       optionsValue: 'id',
+                                                                       value: especialidadSeleccionada, 
+                                                                       optionsCaption: 'Seleccione una especialidad'">
                                 </select>
                             </div>
 

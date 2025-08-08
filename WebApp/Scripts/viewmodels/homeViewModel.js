@@ -29,6 +29,8 @@ function LoginForm() {
             .then(data => {
                 console.log("respuesta API:", data);
 
+                localStorage.setItem("usuario", JSON.stringify(data));
+
                 if (body.TipoUsuario === "medico") {
                     window.location.href = "/Vistas/Medico.aspx";
                 }
@@ -49,12 +51,7 @@ function RegistroForm() {
     var self = this;
 
     // Especialidades
-    self.especialidades = ko.observableArray([
-        'Cardiología',
-        'Pediatría',
-        'Neurología',
-        'Dermatología'
-    ]);
+    self.especialidades = ko.observableArray([]);
     self.especialidadSeleccionada = ko.observable('');
 
     self.tipoUsuario = ko.observable('paciente');
@@ -65,6 +62,28 @@ function RegistroForm() {
     self.genero = ko.observable('m');
     self.celular = ko.observable('');
     self.passwordRegistro = ko.observable('');
+
+    self.tipoUsuario.subscribe(function (nuevoValor) {
+        if (nuevoValor === 'medico') {
+            self.getEspecialidades();
+        } else {
+            self.especialidades([]); // limpiar si no es médico
+            self.especialidadSeleccionada('');
+        }
+    });
+
+    self.getEspecialidades = function () {
+        fetch("https://localhost:44345/api/Usuarios/especialidades")
+            .then(res => {
+                if (!res.ok) throw new Error("Error obteniendo especialidades");
+                return res.json();
+            })
+            .then(data => {
+                self.especialidades(data);
+            })
+            .catch(err => console.error(err));
+    };
+
 
 
     self.registrar = function () {
@@ -120,15 +139,15 @@ function RegistroForm() {
         }
 
         const body = {
-            Id : self.idRegistro(),
-            Nombre : self.nombre(),
-            FechaNac : self.fechaNacimiento(),
+            id : self.idRegistro(),
+            nombre : self.nombre(),
+            fechanac : self.fechaNacimiento(),
             TipoDoc : self.tipoDocumento(),
             Genero : self.genero(),
             Celular : self.celular(),
             Password : self.passwordRegistro(),
             TipoUsuario : self.tipoUsuario(),
-            Especialidad : self.especialidadSeleccionada()
+            idEspecialidad : self.especialidadSeleccionada()
         };
         console.log({ registro: body });
     }
@@ -159,8 +178,6 @@ document.addEventListener('DOMContentLoaded', function () {
     //Bloquear fechas posteriores
     const hoy = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
     fechaNacInput.max = hoy;
-
-   
 });
 
 //Bloquear documentos por edad

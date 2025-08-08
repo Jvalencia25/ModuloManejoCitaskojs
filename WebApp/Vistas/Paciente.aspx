@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="WebApp.Vistas.Usuario" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Paciente.aspx.cs" Inherits="WebApp.Vistas.Usuario" %>
 
 <!DOCTYPE html>
 <html>

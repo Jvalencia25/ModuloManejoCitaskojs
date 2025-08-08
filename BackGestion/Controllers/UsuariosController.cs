@@ -35,7 +35,7 @@ namespace BackGestion.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> ObtenerUsuario(long id, [FromQuery] string tipo)
+        public async Task<IActionResult> ObtenerUsuarioPorId(long id, [FromQuery] string tipo)
         {
             var usuario = await _usuarioService.ObtenerUsuarioPorIdAsync(id, tipo);
             if (usuario == null) return NotFound();
@@ -43,7 +43,7 @@ namespace BackGestion.Controllers
             return Ok(usuario);
         }
 
-        [HttpGet("{id}/Nombre")]
+        [HttpGet("{id}/nombre")]
         public async Task<IActionResult> ObtenerNombre(long id, [FromQuery] string tipo)
         {
             var nombre = await _usuarioService.ObtenerNombrePorIdAsync(id, tipo);

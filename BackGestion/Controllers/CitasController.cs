@@ -39,13 +39,19 @@ namespace BackGestion.Controllers
 
         
         [HttpGet]
-       public async Task<IActionResult> GetTodasLasCitas()
+       public async Task<IActionResult> GetCitas([FromQuery] DateOnly? fechaDesde, [FromQuery] DateOnly? fechaHasta)
         {
-            var citas = await _citaService.ObtenerTodasLasCitasAsync();
 
-            if (citas == null || !citas.Any()) return NotFound("No hay citas registradas");
+            if (fechaDesde.HasValue && fechaHasta.HasValue)
+            {
+                var citas = await _citaService.ObtenerCitasEnRangoDeFecha(fechaDesde.Value, fechaHasta.Value);
+                return Ok(citas);
+            }
 
-            return Ok(citas);
+            var todas = await _citaService.ObtenerTodasLasCitasAsync();
+
+            if (todas == null || !todas.Any()) return NotFound("No hay citas registradas");
+            return Ok(todas);
         }
 
         [HttpGet("medico")]
@@ -65,20 +71,11 @@ namespace BackGestion.Controllers
             return Ok(citas);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<CitaDTO>>> GetCitasEnRangoDeFechas([FromQuery] DateOnly fechaDesde, [FromQuery] DateOnly fechaHasta)
-        {
-            var citas = await _citaService.ObtenerCitasEnRangoDeFecha(fechaDesde, fechaHasta);
-            return Ok(citas);
-        }
-
-
-
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCita(int id)
+        public async Task<IActionResult> DeleteCita(long id)
         {
-            var cita = await _citaService.DeleteCita(id);
-            if (!cita) return BadRequest("Error al eliminar la cita");
+            var result = await _citaService.DeleteCita(id);
+            if (!result) return BadRequest("Error al eliminar la cita");
 
             return Ok("Cita eliminada");
         }

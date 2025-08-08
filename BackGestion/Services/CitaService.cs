@@ -176,11 +176,13 @@ namespace BackGestion.Services
             return cantidadCitas < 2;
         }
 
-        public async Task<bool> DeleteCita(int id)
+        public async Task<bool> DeleteCita(long id)
         {
             var cita = await _context.Citas.FirstOrDefaultAsync(c => c.IdCita == id);
             if (cita == null) return false;
 
+            _context.Citas.Remove(cita);
+            _context.SaveChanges();
             return true;
         }
 

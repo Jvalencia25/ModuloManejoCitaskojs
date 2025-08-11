@@ -25,7 +25,7 @@ namespace BackGestion.Controllers
             var error = await _usuarioService.RegistrarUsuarioAsync(data);
             if (error != null) return Conflict(error);
 
-            return Ok("Usuario registrado correctamente");
+            return Ok(new { mensaje = "Usuario registrado correctamente" });
         }
 
         [HttpPost("login")]

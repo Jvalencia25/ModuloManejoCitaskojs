@@ -88,52 +88,52 @@ function RegistroForm() {
 
     self.registrar = function () {
 
-        if (!self.idRegistro || !!/^[0-9]+$/.test(self.idRegistro)) {
+        if (!self.idRegistro() || !/^[0-9]+$/.test(self.idRegistro()) || self.idRegistro().length < 6) {
             alert("Número de identificación no válido");
             return;
         }
 
-        if (!self.nombre || self.nombre.trim().length < 3) {
+        if (!self.nombre() || self.nombre().length < 3) {
             alert("Nombre no válido");
             return;
         }
 
         const hoy = new Date().toISOString().split('T')[0];
 
-        if (!self.fechaNacimiento || self.fechaNacimiento > hoy) {
+        if (!self.fechaNacimiento() || self.fechaNacimiento() > hoy) {
             alert("Fecha no válida");
             return;
         }
 
-        if (self.tipoDocumento != "cc" &&
-            self.tipoDocumento != "rc" &&
-            self.tipoDocumento != "ti" &&
-            self.tipoDocumento != "ce" &&
-            self.tipoDocumento != "pa") {
+        if (self.tipoDocumento() != "cc" &&
+            self.tipoDocumento() != "rc" &&
+            self.tipoDocumento() != "ti" &&
+            self.tipoDocumento() != "ce" &&
+            self.tipoDocumento() != "pa") {
 
             alert("Tipo de documento no válido");
             return;
         }
 
-        if (self.tipoUsuario != "medico" && self.tipoUsuario != "paciente") {
+        if (self.tipoUsuario() != "medico" && self.tipoUsuario() != "paciente") {
             alert("Tipo de usuario no válido");
             return;
         }
 
-        if (self.genero != "m" &&
-            self.genero != "f" &&
-            self.genero != "o") {
+        if (self.genero() != "m" &&
+            self.genero() != "f" &&
+            self.genero() != "o") {
 
             alert("Género no válido");
             return;
         }
 
-        if (!self.celular || !!/^[0-9]+$/.test(self.celular)) {
-            alert("Número de identificación no válido");
+        if (!self.celular() || !/^[0-9]+$/.test(self.celular()) || self.celular().length < 7) {
+            alert("Número de celular no válido");
             return;
         }
 
-        if (!self.nombre || self.nombre.trim().length < 6) {
+        if (!self.passwordRegistro() || self.passwordRegistro().length < 6) {
             alert("La contraseña no es segura");
             return;
         }
@@ -142,14 +142,48 @@ function RegistroForm() {
             id : self.idRegistro(),
             nombre : self.nombre(),
             fechanac : self.fechaNacimiento(),
-            TipoDoc : self.tipoDocumento(),
-            Genero : self.genero(),
-            Celular : self.celular(),
-            Password : self.passwordRegistro(),
-            TipoUsuario : self.tipoUsuario(),
+            tipodoc : self.tipoDocumento(),
+            genero : self.genero(),
+            celular : self.celular(),
+            password : self.passwordRegistro(),
+            tipoUsuario : self.tipoUsuario(),
             idEspecialidad : self.especialidadSeleccionada()
         };
-        console.log({ registro: body });
+
+        console.log(body)
+
+        fetch("https://localhost:44345/api/Usuarios", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error en el registro");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("respuesta API:", data);
+
+                localStorage.setItem("usuario", JSON.stringify(data));
+
+                if (body.tipoUsuario === "medico") {
+                    window.location.href = "/Vistas/Medico.aspx";
+                }
+                else if (body.tipoUsuario === "paciente") {
+                    window.location.href = "/Vistas/paciente.aspx";
+                }
+                else alert("Tipo de usuario no reconocido");
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Error en el registro")
+            })
+
+
     }
 }
 
@@ -176,7 +210,7 @@ const rolSelect = document.getElementById("selMedPac");
 document.addEventListener('DOMContentLoaded', function () {
 
     //Bloquear fechas posteriores
-    const hoy = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
+    const hoy = new Date().toISOString().split('T')[0];
     fechaNacInput.max = hoy;
 });
 

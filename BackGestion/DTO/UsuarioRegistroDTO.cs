@@ -24,7 +24,6 @@ namespace BackGestion.DTO
         public string Genero { get; set; }
 
         [Required]
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "Número de celular no válido.")]
         public string Celular { get; set; }
 
         [Required]

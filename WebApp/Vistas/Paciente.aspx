@@ -19,28 +19,42 @@
 
             <div class="card p-4 mb-4 shadow">
                 <h2 class="text-center mb-3">Agendar nueva cita</h2>
-                <form data-bind="submit: agendarCita">
+                <form data-bind="with: agendarCita">
+
                     <div class="mb-3">
-                        <label class="form-label">Fecha:</label>
+                        <label class="form-label">Selecciona la especialidad</label>
+                        <select class="form-select" data-bind="options: especialidades, 
+                                           optionsText: 'nombre',
+                                           optionsValue: 'id',
+                                           value: especialidadSeleccionada, 
+                                           optionsCaption: 'Seleccione una especialidad'">
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona un doctor</label>
+                        <select class="form-select" data-bind="options: medicos, 
+                                           optionsText: 'nombre',
+                                           optionsValue: 'id',
+                                           value: medicoSeleccionado, 
+                                           optionsCaption: 'Seleccione un médico'">
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona una fecha:</label>
                         <input type="date" class="form-control" data-bind="value: fechaCita" required />
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Hora:</label>
-                        <select class="form-control" data-bind="option: horasDisponibles, value: horaCita, optionsCaption: 'selecciona una hora'" required></select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Especialidad</label>
-                        <select class="form-select" data-bind="value: especialidad" required>
-                            <option value="general">Medicina General</option>
-                            <option value="pediatria">Pediatría</option>
-                            <option value="odontologia">Odontología</option>
-                            <option value="psicologia">Psicología</option>
+                        <label class="form-label">Selecciona la hora:</label>
+                        <select class="form-select" data-bind="options: horasDisponibles, 
+                                           value: horaSeleccionada, 
+                                           optionsCaption: 'Seleccione una hora'">
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success w-100">Agendar</button>
+                    <button type="submit" data-bind="click: agendar" class="btn btn-success w-100">Agendar</button>
                 </form>
             </div>
 

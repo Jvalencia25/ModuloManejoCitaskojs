@@ -8,6 +8,8 @@
         <link href="/Content/bootstrap.min.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="/Scripts/knockout-3.5.1.js"></script>
+        <script src="/Scripts/knockout.mapping-latest.js"></script>
+        <script src="/Scripts/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/Content/Estilos/Home.css" />
         <link rel="stylesheet" type="text/css" href="/Content/Estilos/General.css" />
     </head>

@@ -1,48 +1,36 @@
 function LoginForm() {
     const self = this;
 
-    self.id = ko.observable('');
-    self.password = ko.observable('');
-    self.tipoUsuario = ko.observable('paciente');
+    ko.mapping.fromJS({
+        id: '',
+        password: '',
+        tipoUsuario: 'paciente'
+    }, {}, self)
 
     self.iniciarSesion = function () {
-        const body = {
-            Id: self.id(),
-            Password: self.password(),
-            TipoUsuario: self.tipoUsuario()
-        };
+        const body = ko.mapping.toJS(self);
         console.log({ login: body });
 
-        fetch("https://localhost:44345/api/Usuarios/Login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error en el inicio de sesión");
-                }
-                return response.json();
-            })
-            .then(data => {
+        $.ajax({
+            url: "https://localhost:44345/api/Usuarios/Login",
+            type: "POST",
+            data: JSON.stringify(body),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
                 console.log("respuesta API:", data);
 
                 localStorage.setItem("usuario", JSON.stringify(data));
 
-                if (body.TipoUsuario === "medico") {
-                    window.location.href = "/Vistas/Medico.aspx";
-                }
-                else if (body.TipoUsuario === "paciente") {
-                    window.location.href = "/Vistas/paciente.aspx";
-                }
+                if (self.tipoUsuario() === "medico") window.location.href = "/Vistas/Medico.aspx";      
+                else if (self.tipoUsuario() === "paciente") window.location.href = "/Vistas/paciente.aspx";
                 else alert("Tipo de usuario no reconocido");
-            })
-            .catch(error => {
+            },
+            error: function (xhr, status, error) {
                 console.error("Error:", error);
                 alert("Usuario o contraseña incorrectos")
-            })
+            }
+        })
     
     };
 }
@@ -50,27 +38,20 @@ function LoginForm() {
 function RegistroForm() {
     var self = this;
 
-    // Especialidades
-    self.especialidades = ko.observableArray([]);
-    self.especialidadSeleccionada = ko.observable('');
+    var model = {
+        especialidades: [],
+        especialidadSeleccionada: '',
+        tipoUsuario: 'paciente',
+        nombre: '',
+        fechaNacimiento: '',
+        tipoDocumento: 'cc',
+        idRegistro: '',
+        genero: 'm',
+        celular: '',
+        passwordRegistro: ''
+    };
 
-    self.tipoUsuario = ko.observable('paciente');
-    self.nombre = ko.observable('');
-    self.fechaNacimiento = ko.observable('');
-    self.tipoDocumento = ko.observable('cc');
-    self.idRegistro = ko.observable('');
-    self.genero = ko.observable('m');
-    self.celular = ko.observable('');
-    self.passwordRegistro = ko.observable('');
-
-    self.tipoUsuario.subscribe(function (nuevoValor) {
-        if (nuevoValor === 'medico') {
-            self.getEspecialidades();
-        } else {
-            self.especialidades([]); // limpiar si no es médico
-            self.especialidadSeleccionada('');
-        }
-    });
+    ko.mapping.fromJS(model, {}, self);
 
     self.getEspecialidades = function () {
         fetch("https://localhost:44345/api/Usuarios/especialidades")
@@ -78,16 +59,21 @@ function RegistroForm() {
                 if (!res.ok) throw new Error("Error obteniendo especialidades");
                 return res.json();
             })
-            .then(data => {
-                self.especialidades(data);
-            })
+            .then(data => self.especialidades(data))
             .catch(err => console.error(err));
     };
 
 
+    self.tipoUsuario.subscribe(function (nuevoValor) {
+        if (nuevoValor === 'medico') {
+            self.getEspecialidades();
+        } else {
+            self.especialidades([]);
+            self.especialidadSeleccionada('');
+        }
+    });
 
     self.registrar = function () {
-
         if (!self.idRegistro() || !/^[0-9]+$/.test(self.idRegistro()) || self.idRegistro().length < 6) {
             alert("Número de identificación no válido");
             return;
@@ -138,52 +124,40 @@ function RegistroForm() {
             return;
         }
 
-        const body = {
-            id : self.idRegistro(),
-            nombre : self.nombre(),
-            fechanac : self.fechaNacimiento(),
-            tipodoc : self.tipoDocumento(),
-            genero : self.genero(),
-            celular : self.celular(),
-            password : self.passwordRegistro(),
-            tipoUsuario : self.tipoUsuario(),
-            idEspecialidad : self.especialidadSeleccionada()
+        var body = {
+            id: self.idRegistro(),
+            nombre: self.nombre(),
+            fechanac: self.fechaNacimiento(),
+            tipodoc: self.tipoDocumento(),
+            genero: self.genero(),
+            celular: self.celular(),
+            password: self.passwordRegistro(),
+            tipoUsuario: self.tipoUsuario(),
+            idEspecialidad: self.especialidadSeleccionada()
         };
 
         console.log(body)
 
-        fetch("https://localhost:44345/api/Usuarios", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error en el registro");
-                }
-                return response.json();
-            })
-            .then(data => {
+        $.ajax({
+            url: "https://localhost:44345/api/Usuarios",
+            type: "POST",
+            data: JSON.stringify(body),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
                 console.log("respuesta API:", data);
 
                 localStorage.setItem("usuario", JSON.stringify(data));
 
-                if (body.tipoUsuario === "medico") {
-                    window.location.href = "/Vistas/Medico.aspx";
-                }
-                else if (body.tipoUsuario === "paciente") {
-                    window.location.href = "/Vistas/paciente.aspx";
-                }
+                if (body.tipoUsuario === "medico") window.location.href = "/Vistas/Medico.aspx";
+                else if (body.tipoUsuario === "paciente") window.location.href = "/Vistas/paciente.aspx";
                 else alert("Tipo de usuario no reconocido");
-            })
-            .catch(error => {
+            },
+            error: function (xhr, status, error) {
                 console.error("Error:", error);
                 alert("Error en el registro")
-            })
-
-
+            }
+        });
     }
 }
 

@@ -8,6 +8,8 @@
         <link href="/Content/bootstrap.min.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="/Scripts/knockout-3.5.1.js"></script>
+        <link rel="stylesheet" type="text/css" href="/Content/Estilos/Home.css" />
+        <link rel="stylesheet" type="text/css" href="/Content/Estilos/General.css" />
     </head>
 
     <body>
@@ -36,9 +38,9 @@
                         </select>
                     </div>
 
-                    <button data-bind="click: iniciarSesion" class="btn btn-primary w-100">Ingresar</button>
+                    <button data-bind="click: iniciarSesion" class="btn btn-primary mt-3 w-100">Ingresar</button>
 
-                </div> <div class="text-center mt-3">
+                </div> <div class="text-center mt-5">
                     <p>¿No tienes cuenta?</p>
                     <button type="button" class="btn btn-link" data-bind="click: toggleRegistro">Regístrate</button>
                 </div>

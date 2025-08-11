@@ -8,12 +8,14 @@
         <link href="/Content/bootstrap.min.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="/Scripts/knockout-3.5.1.js"></script>
-        <script src="/Scripts/viewmodels/usuarioViewModel.js"></script>
+        <script src="/Scripts/viewmodels/pacienteViewModel.js"></script>
+        <link rel="stylesheet" type="text/css" href="/Content/Estilos/Paciente.css" />
+        <link rel="stylesheet" type="text/css" href="/Content/Estilos/General.css" />
     </head>
 
     <body class="d-flex flex-column align-items-center p-4" data-bind="with: usuario">
         <div class="container">
-            <h1 class="text-center text-primary mb-4">Bienvenid@, <span class="fw-bold" data-bind="text: nombrePaciente"></span></h1>
+            <h1 class="text-center text-white text-primary mb-4">Bienvenid@, <span class="fw-bold" data-bind="text: nombrePaciente"></span></h1>
 
             <div class="card p-4 mb-4 shadow">
                 <h2 class="text-center mb-3">Agendar nueva cita</h2>

@@ -120,6 +120,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Estilos\General.css" />
+    <Content Include="Content\Estilos\Home.css" />
+    <Content Include="Content\Estilos\Paciente.css" />
+    <Content Include="Content\img\fondo.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -162,7 +166,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\viewmodels\homeViewModel.js" />
     <Content Include="Scripts\viewmodels\medicoViewModel.js" />
-    <Content Include="Scripts\viewmodels\usuarioViewModel.js" />
+    <Content Include="Scripts\viewmodels\pacienteViewModel.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />

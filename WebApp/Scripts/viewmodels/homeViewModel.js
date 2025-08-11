@@ -28,7 +28,7 @@ function LoginForm() {
             },
             error: function (xhr, status, error) {
                 console.error("Error:", error);
-                alert("Usuario o contraseña incorrectos")
+                alert(xhr.responseText)
             }
         })
     
@@ -155,7 +155,7 @@ function RegistroForm() {
             },
             error: function (xhr, status, error) {
                 console.error("Error:", error);
-                alert("Error en el registro")
+                alert(xhr.responseText);
             }
         });
     }

@@ -18,6 +18,21 @@
         <div class="container">
             <h1 class="text-center text-white text-primary mb-4">Bienvenid@, <span class="fw-bold" data-bind="text: usuario.nombre"></span></h1>
 
+            <!-- Lista de citas pendientes -->
+            <div class="card p-4 shadow w-100 mb-4">
+                <h2 class="text-center mb-3">Citas pendientes</h2>
+                <ul class="list-group p-4" data-bind="foreach: citas">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                            <strong data-bind="text: especialidad"></strong> -
+                            <span data-bind="text: fechaCita"></span> a las
+                            <span data-bind="text: hora"></span>
+                        </span>
+                        <button class="btn btn-sm btn-outline-danger" data-bind="click: $parent.cancelarCita">Cancelar</button>
+                    </li>
+                </ul>
+            </div>
+
             <!-- Formulario de agendar cita -->
             <div class="card p-4 mb-4 shadow" data-bind="with: agendarCita">
                 <h2 class="text-center mb-3">Agendar nueva cita</h2>
@@ -58,21 +73,6 @@
 
                     <button type="submit" data-bind="click: $root.agendar" class="btn btn-success w-100">Agendar</button>
                 </form>
-            </div>
-
-            <!-- Lista de citas pendientes -->
-            <div class="card p-4 shadow w-100 mb-4">
-                <h2 class="text-center mb-3">Citas pendientes</h2>
-                <ul class="list-group p-4" data-bind="foreach: citas">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>
-                            <strong data-bind="text: especialidad"></strong> -
-                            <span data-bind="text: fecha"></span> a las
-                            <span data-bind="text: hora"></span>
-                        </span>
-                        <button class="btn btn-sm btn-outline-danger" data-bind="click: $parent.cancelarCita">Cancelar</button>
-                    </li>
-                </ul>
             </div>
 
             <button class="btn btn-danger" data-bind="click: cerrarSesion">Cerrar sesión</button>

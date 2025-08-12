@@ -31,6 +31,7 @@ function PacienteViewModel() {
         else window.location.href = "Home.aspx";
 
         self.getEspecialidades();
+        self.getCitas();
 
     }
 
@@ -128,11 +129,26 @@ function PacienteViewModel() {
 
                 alert("Cita agendada correctamente para el día "
                     + fechaSel
-                    + "A las "
+                    + " A las "
                     + horaSel);
             },
             error: function (xhr, status, error) {
                 console.error("Error al agendar cita:", error);
+                alert(xhr.responseText);
+            }
+        })
+    }
+
+    self.getCitas = function () {
+        $.ajax({
+            url: "https://localhost:44345/api/Citas/paciente/" + self.usuario.id(),
+            type: "GET",
+            success: function (data) {
+                ko.mapping.fromJS(data, {}, self.citas);
+                console.log(data);
+            },
+            error: function (xhr, error) {
+                console.error("Error al obtener citas: ", error);
                 alert(xhr.responseText);
             }
         })
@@ -144,6 +160,7 @@ function PacienteViewModel() {
 
 ko.applyBindings(new PacienteViewModel());
 
+//JS
 const fechaInput = document.getElementById("fechaInput");
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -28,7 +28,7 @@ function PacienteViewModel() {
     self.init = function () {
         var userLS = JSON.parse(localStorage.getItem("usuario") || "null");
         if (userLS) ko.mapping.fromJS(userLS, {}, self.usuario);
-        else window.location.href = "Home.aspx";
+        else window.location.href = "/Home.aspx";
 
         self.getEspecialidades();
         self.getCitas();
@@ -131,6 +131,8 @@ function PacienteViewModel() {
                     + fechaSel
                     + " A las "
                     + horaSel);
+
+                self.getCitas();
             },
             error: function (xhr, status, error) {
                 console.error("Error al agendar cita:", error);

@@ -122,6 +122,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Estilos\General.css" />
     <Content Include="Content\Estilos\Home.css" />
+    <Content Include="Content\Estilos\Medico.css" />
     <Content Include="Content\Estilos\Paciente.css" />
     <Content Include="Content\img\fondo.jpg" />
     <Content Include="Content\Site.css" />

@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Paciente.aspx.cs" Inherits="WebApp.Vistas.Usuario" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Paciente.aspx.cs" Inherits="Vistas_Usuario" %>
 
 <!DOCTYPE html>
 <html>
@@ -8,24 +8,26 @@
         <link href="/Content/bootstrap.min.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="/Scripts/knockout-3.5.1.js"></script>
-        <script src="/Scripts/viewmodels/pacienteViewModel.js"></script>
+        <script src="/Scripts/knockout.mapping-latest.js"></script>
+        <script src="/Scripts/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/Content/Estilos/Paciente.css" />
         <link rel="stylesheet" type="text/css" href="/Content/Estilos/General.css" />
     </head>
 
-    <body class="d-flex flex-column align-items-center p-4" data-bind="with: usuario">
+    <body class="d-flex flex-column align-items-center p-4">
         <div class="container">
-            <h1 class="text-center text-white text-primary mb-4">Bienvenid@, <span class="fw-bold" data-bind="text: nombrePaciente"></span></h1>
+            <h1 class="text-center text-white text-primary mb-4">Bienvenid@, <span class="fw-bold" data-bind="text: usuario.nombre"></span></h1>
 
-            <div class="card p-4 mb-4 shadow">
+            <!-- Formulario de agendar cita -->
+            <div class="card p-4 mb-4 shadow" data-bind="with: agendarCita">
                 <h2 class="text-center mb-3">Agendar nueva cita</h2>
-                <form data-bind="with: agendarCita">
 
+                <form>
                     <div class="mb-3">
                         <label class="form-label">Selecciona la especialidad</label>
                         <select class="form-select" data-bind="options: especialidades, 
                                            optionsText: 'nombre',
-                                           optionsValue: 'id',
+                                           optionsValue: 'nombre',
                                            value: especialidadSeleccionada, 
                                            optionsCaption: 'Seleccione una especialidad'">
                         </select>
@@ -43,7 +45,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Selecciona una fecha:</label>
-                        <input type="date" class="form-control" data-bind="value: fechaCita" required />
+                        <input type="date" id="fechaInput" class="form-control" data-bind="value: fechaCita" required />
                     </div>
 
                     <div class="mb-3">
@@ -54,13 +56,14 @@
                         </select>
                     </div>
 
-                    <button type="submit" data-bind="click: agendar" class="btn btn-success w-100">Agendar</button>
+                    <button type="submit" data-bind="click: $root.agendar" class="btn btn-success w-100">Agendar</button>
                 </form>
             </div>
 
+            <!-- Lista de citas pendientes -->
             <div class="card p-4 shadow w-100 mb-4">
                 <h2 class="text-center mb-3">Citas pendientes</h2>
-                <ul class="list-group p-4" data-bind="foreach: citasPendientes">
+                <ul class="list-group p-4" data-bind="foreach: citas">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span>
                             <strong data-bind="text: especialidad"></strong> -
@@ -73,6 +76,10 @@
             </div>
 
             <button class="btn btn-danger" data-bind="click: cerrarSesion">Cerrar sesión</button>
+
+            <script src="/Scripts/viewmodels/pacienteViewModel.js"></script>
+
+
 
         </div>
     </body>

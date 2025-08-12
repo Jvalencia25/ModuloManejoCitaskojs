@@ -54,13 +54,16 @@ function RegistroForm() {
     ko.mapping.fromJS(model, {}, self);
 
     self.getEspecialidades = function () {
-        fetch("https://localhost:44345/api/Usuarios/especialidades")
-            .then(res => {
-                if (!res.ok) throw new Error("Error obteniendo especialidades");
-                return res.json();
-            })
-            .then(data => self.especialidades(data))
-            .catch(err => console.error(err));
+        $.ajax({
+            url: "https://localhost:44345/api/Usuarios/especialidades",
+            type: "GET",
+            success: function (data) {
+                data => self.especialidades(data);
+            },
+            error: function (xhr) {
+                alert("Error al obtener especialidades: " + xhr.responseText);
+            }
+        })
     };
 
 
@@ -147,7 +150,7 @@ function RegistroForm() {
             success: function (data) {
                 console.log("respuesta API:", data);
 
-                localStorage.setItem("usuario", JSON.stringify(data));
+                localStorage.setItem("usuario", JSON.stringify(body));
 
                 if (body.tipoUsuario === "medico") window.location.href = "/Vistas/Medico.aspx";
                 else if (body.tipoUsuario === "paciente") window.location.href = "/Vistas/paciente.aspx";

@@ -167,11 +167,20 @@ const fechaInput = document.getElementById("fechaInput");
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    //Bloquear fechas posteriores
+    //Bloquear fechas anteriores
     const manana = new Date();
     manana.setDate(manana.getDate() + 1);
 
     const fechaMin = manana.toISOString().split('T')[0];
     fechaInput.min = fechaMin;
+});
+
+fechaInput.addEventListener('input', function (e) {
+    var day = new Date(this.value).getUTCDay();
+    if ([0].includes(day)) {
+        e.preventDefault();
+        this.value = '';
+        alert('No hay disponibilidad los domingos');
+    }
 });
 

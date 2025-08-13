@@ -24,8 +24,16 @@ function MedicoViewModel() {
 
     self.getCitas = function () {
 
+        console.log("https://localhost:44345/api/Citas/medico/" +
+            self.usuario.id() +
+            "?fechaDesde=" +
+            self.fechaDesde() +
+            "&fechaHasta=" +
+            self.fechaHasta())
         $.ajax({
-            url: "https://localhost:44345/api/Citas?fechaDesde=" +
+            url: "https://localhost:44345/api/Citas/medico/" +
+                self.usuario.id() +
+                "?fechaDesde=" +
                 self.fechaDesde() +
                 "&fechaHasta=" +
                 self.fechaHasta(),

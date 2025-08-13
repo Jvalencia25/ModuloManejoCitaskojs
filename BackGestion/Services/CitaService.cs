@@ -18,38 +18,35 @@ namespace BackGestion.Services
             _usuarioService = usuarioService;
         }
 
-        public async Task<List<Cita>> ObtenerTodasLasCitasAsync()
-        {
-            return await _context.Citas
-                .Include(c => c.Medico)
-                .Include(c => c.Paciente)
-                .ToListAsync();
-        }
+        //public async Task<List<Cita>> ObtenerTodasLasCitasAsync()
+        //{
+        //    return await _context.Citas
+        //        .Include(c => c.Medico)
+        //        .Include(c => c.Paciente)
+        //        .ToListAsync();
+        //}
 
-        public async Task<List<CitaDTO>> ObtenerCitasEnRangoDeFecha(DateOnly fechaDesde, DateOnly fechaHasta)
-        {
-            return await _context.Citas
-                .Include(c => c.Medico)
-                .Include(c => c.Paciente)
-                .Where(c => c.FechaCita >= fechaDesde && c.FechaCita <= fechaHasta)
-                .Select(c => new CitaDTO
-                {
-                    IdCita = c.IdCita,
-                    FechaCita = c.FechaCita,
-                    Hora = c.Hora,
-                    NombreMedico = c.Medico.Nombre,
-                    Especialidad = c.Medico.Especialidad.Nombre,
-                    NombrePaciente = c.Paciente.Nombre
-                })
-                .ToListAsync();
-        }
+        //public async Task<List<CitaDTO>> ObtenerCitasEnRangoDeFecha(DateOnly fechaDesde, DateOnly fechaHasta)
+        //{
+        //    return await _context.Citas
+        //        .Include(c => c.Medico)
+        //        .Include(c => c.Paciente)
+        //        .Where(c => c.FechaCita >= fechaDesde && c.FechaCita <= fechaHasta)
+        //        .Select(c => new CitaDTO
+        //        {
+        //            IdCita = c.IdCita,
+        //            FechaCita = c.FechaCita,
+        //            Hora = c.Hora,
+        //            NombreMedico = c.Medico.Nombre,
+        //            Especialidad = c.Medico.Especialidad.Nombre,
+        //            NombrePaciente = c.Paciente.Nombre
+        //        })
+        //        .ToListAsync();
+        //}
 
         public async Task<List<CitaDTO>> ObtenerCitasEnRangoDeFechaPorMedico(DateOnly fechaDesde, DateOnly fechaHasta, long idMedico)
         {
             return await _context.Citas
-                .Include(c => c.Medico)
-                    .ThenInclude(m => m.Especialidad)
-                .Include(c => c.Paciente)
                 .Where(c => c.FechaCita >= fechaDesde && c.FechaCita <= fechaHasta && c.IdMed == idMedico)
                 .Select(c => new CitaDTO
                 {
@@ -63,14 +60,32 @@ namespace BackGestion.Services
                 .ToListAsync();
         }
 
+        public async Task<List<CitaDTO>> ObtenerCitasPorMedico(long idMedico)
+        {
+            return await _context.Citas
+            .Where(c => c.IdMed == idMedico)
+            .Select(c => new CitaDTO
+            {
+                IdCita = c.IdCita,
+                FechaCita = c.FechaCita,
+                Hora = c.Hora,
+                NombreMedico = c.Medico.Nombre,
+                Especialidad = c.Medico.Especialidad.Nombre,
+                NombrePaciente = c.Paciente.Nombre
+            })
+            .ToListAsync();
+        }
+
 
         public async Task<List<CitaDTO>> ObtenerCitasPorUsuario(long idPaciente)
         {
+            var hoy = DateOnly.FromDateTime(DateTime.Now);
+
             return await _context.Citas
                 .Include(c => c.Medico)
                     .ThenInclude(m => m.Especialidad)
                 .Include(c => c.Paciente)
-                .Where(c => c.IdPac == idPaciente)
+                .Where(c => c.IdPac == idPaciente && c.FechaCita >= hoy)
                 .Select(c => new CitaDTO
                 {
                     IdCita = c.IdCita,

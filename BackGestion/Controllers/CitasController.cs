@@ -35,31 +35,40 @@ namespace BackGestion.Controllers
             return Ok(resultado);
         }
 
-        
-       [HttpGet]
-       public async Task<IActionResult> ObtenerCitas([FromQuery] DateOnly? fechaDesde, [FromQuery] DateOnly? fechaHasta)
+
+        //[HttpGet]
+        //public async Task<IActionResult> ObtenerCitas([FromQuery] DateOnly? fechaDesde, [FromQuery] DateOnly? fechaHasta)
+        // {
+
+        //     if (fechaDesde.HasValue && fechaHasta.HasValue)
+        //     {
+        //         var citas = await _citaService.ObtenerCitasEnRangoDeFecha(fechaDesde.Value, fechaHasta.Value);
+        //         return Ok(citas);
+        //     }
+
+        //     var todas = await _citaService.ObtenerTodasLasCitasAsync();
+
+        //     if (todas == null || !todas.Any()) return NotFound("No hay citas registradas");
+        //     return Ok(todas);
+        // }
+
+        [HttpGet("medico/{idMedico}")]
+        public async Task<ActionResult<List<CitaDTO>>> GetCitasPorMedico(
+            [FromQuery] DateOnly? fechaDesde,
+            [FromQuery] DateOnly? fechaHasta,
+            long idMedico)
         {
 
             if (fechaDesde.HasValue && fechaHasta.HasValue)
             {
-                var citas = await _citaService.ObtenerCitasEnRangoDeFecha(fechaDesde.Value, fechaHasta.Value);
+                var citas = await _citaService.ObtenerCitasEnRangoDeFechaPorMedico(fechaDesde.Value, fechaHasta.Value, idMedico);
                 return Ok(citas);
             }
 
-            var todas = await _citaService.ObtenerTodasLasCitasAsync();
+            var todas = await _citaService.ObtenerCitasPorMedico(idMedico);
 
             if (todas == null || !todas.Any()) return NotFound("No hay citas registradas");
             return Ok(todas);
-        }
-
-        [HttpGet("medico")]
-        public async Task<ActionResult<List<CitaDTO>>> GetCitasPorMedico(
-            [FromQuery] DateOnly fechaDesde,
-            [FromQuery] DateOnly fechaHasta,
-            [FromQuery] long idMedico)
-        {
-            var citas = await _citaService.ObtenerCitasEnRangoDeFechaPorMedico(fechaDesde, fechaHasta, idMedico);
-            return Ok(citas);
         }
 
         [HttpGet("paciente/{idPaciente}")]

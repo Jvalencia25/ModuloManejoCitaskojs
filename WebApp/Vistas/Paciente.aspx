@@ -54,20 +54,22 @@
                                            optionsText: 'nombre',
                                            optionsValue: 'id',
                                            value: medicoSeleccionado, 
-                                           optionsCaption: 'Seleccione un médico'">
+                                           optionsCaption: 'Seleccione un médico',
+                                            enable: especialidadSeleccionada">
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Selecciona una fecha:</label>
-                        <input type="date" id="fechaInput" class="form-control" data-bind="value: fechaCita" required />
+                        <input type="date" id="fechaInput" class="form-control" data-bind="value: fechaCita, enable: medicoSeleccionado" required />
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Selecciona la hora:</label>
                         <select class="form-select" data-bind="options: horasDisponibles, 
                                            value: horaSeleccionada, 
-                                           optionsCaption: 'Seleccione una hora'">
+                                           optionsCaption: 'Seleccione una hora',
+                                            enable: fechaCita">
                         </select>
                     </div>
 

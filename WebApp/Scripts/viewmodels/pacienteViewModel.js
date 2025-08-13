@@ -22,13 +22,13 @@ function PacienteViewModel() {
 
     self.cerrarSesion = function () {
         localStorage.removeItem("usuario");
-        window.location.href = "/Home.aspx";
+        window.location.href = "/Vistas/Home.aspx";
     }
 
     self.init = function () {
         var userLS = JSON.parse(localStorage.getItem("usuario") || "null");
         if (userLS) ko.mapping.fromJS(userLS, {}, self.usuario);
-        else window.location.href = "/Home.aspx";
+        else window.location.href = "/Vistas/Home.aspx";
 
         self.getEspecialidades();
         self.getCitas();

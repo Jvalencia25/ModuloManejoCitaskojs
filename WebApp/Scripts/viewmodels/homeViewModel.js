@@ -186,6 +186,14 @@ const rolSelect = document.getElementById("selMedPac");
 
 document.addEventListener('DOMContentLoaded', function () {
 
+    const usuarioStr = localStorage.getItem("usuario");
+    const usuario = JSON.parse(usuarioStr);
+
+    if (usuario) {
+        if (usuario.idEspecialidad)  window.location.href = "/Vistas/Medico.aspx"; 
+        else window.location.href = "/Vistas/Paciente.aspx"; 
+    }
+    
     //Bloquear fechas posteriores
     const hoy = new Date().toISOString().split('T')[0];
     fechaNacInput.max = hoy;

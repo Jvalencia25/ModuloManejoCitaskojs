@@ -17,7 +17,7 @@ function MedicoViewModel() {
     self.init = function () {
         var user = JSON.parse(localStorage.getItem("usuario") || "null");
         if (user) ko.mapping.fromJS(user, {}, self.usuario);
-        else window.location.href = "/Home.aspx";
+        else window.location.href = "/Vistas/Home.aspx";
 
         self.getCitas();
     }
@@ -62,7 +62,7 @@ function MedicoViewModel() {
 
     self.cerrarSesion = function () {
         localStorage.removeItem("usuario");
-        window.location.href = "/Home.aspx";
+        window.location.href = "/Vistas/Home.aspx"
     }
 
     self.init();

@@ -53,6 +53,7 @@ namespace BackGestion.Services
                     IdCita = c.IdCita,
                     FechaCita = c.FechaCita,
                     Hora = c.Hora,
+                    Duracion = c.Duracion,
                     NombreMedico = c.Medico.Nombre,
                     Especialidad = c.Medico.Especialidad.Nombre,
                     NombrePaciente = c.Paciente.Nombre
@@ -69,6 +70,7 @@ namespace BackGestion.Services
                 IdCita = c.IdCita,
                 FechaCita = c.FechaCita,
                 Hora = c.Hora,
+                Duracion = c.Duracion,
                 NombreMedico = c.Medico.Nombre,
                 Especialidad = c.Medico.Especialidad.Nombre,
                 NombrePaciente = c.Paciente.Nombre
@@ -91,6 +93,7 @@ namespace BackGestion.Services
                     IdCita = c.IdCita,
                     FechaCita = c.FechaCita,
                     Hora = c.Hora,
+                    Duracion = c.Duracion,
                     NombreMedico = c.Medico.Nombre,
                     Especialidad = c.Medico.Especialidad.Nombre,
                     NombrePaciente = c.Paciente.Nombre
@@ -99,8 +102,10 @@ namespace BackGestion.Services
         }
 
 
-        public async Task<object?> VerDisponibilidad(DateOnly fecha, long idMedico)
+        public async Task<object?> VerDisponibilidad(DateOnly fecha, long idMedico, int duracion)
         {
+            if (duracion > 120) return "La duración es demasiado larga";
+
             //Valida si es fecha anterior
             if (fecha <= DateOnly.FromDateTime(DateTime.Now)) return "No hay disponibilidad";
 
@@ -114,7 +119,6 @@ namespace BackGestion.Services
 
             if (medico == null || medico.Especialidad == null) return new List<TimeOnly>();
 
-            int duracion = medico.Especialidad.DuracionMin;
             TimeOnly inicio = new(8, 0);
             TimeOnly fin = new(17, 0);
 
@@ -138,7 +142,12 @@ namespace BackGestion.Services
 
         public async Task<object?> AgendarCita(AgendarCitaDTO data)
         {
-            if (!await ValidarDisponibilidad(data.IdMed, data.FechaCita, data.Hora)) return "No hay disponibilidad";
+            if (data.Duracion > 120) return "La duración es demasiado larga";
+
+            var paciente = await _usuarioService.ObtenerUsuarioPorIdAsync(data.IdPac, "paciente");
+            if (paciente == null) return "Paciente no encontrado";
+
+            if (!await ValidarDisponibilidad(data.IdMed, data.FechaCita, data.Hora, data.Duracion)) return "No hay disponibilidad";
 
             if (!await ValidarLimiteCitasPorDia(data.IdPac, data.FechaCita)) return "No se puedena agendar más de dos citas en un día";
 
@@ -147,7 +156,8 @@ namespace BackGestion.Services
                 IdPac = data.IdPac,
                 IdMed = data.IdMed,
                 FechaCita = data.FechaCita,
-                Hora = data.Hora
+                Hora = data.Hora,
+                Duracion = data.Duracion
             };
 
             _context.Citas.Add(nuevaCita);
@@ -155,7 +165,7 @@ namespace BackGestion.Services
             return nuevaCita;
         }
 
-        public async Task<bool> ValidarDisponibilidad(long idMedico, DateOnly fecha, TimeOnly hora)
+        public async Task<bool> ValidarDisponibilidad(long idMedico, DateOnly fecha, TimeOnly hora, int duracion)
         {
             //Valida si es fecha anterior
             if (fecha <= DateOnly.FromDateTime(DateTime.Now)) return false;
@@ -176,7 +186,6 @@ namespace BackGestion.Services
 
             if (medico == null || medico.Especialidad == null) return false;
 
-            int duracion = medico.Especialidad.DuracionMin;
             TimeOnly horaFin = hora.AddMinutes(duracion);
 
             var hayConflicto = await _context.Citas

@@ -15,7 +15,7 @@ namespace BackGestion.Models
         public string Nombre { get; set; }
 
         [Required]
-        [Column("duracion_min")]
-        public int DuracionMin { get; set; } = 15;
+        [Column("duracion_def")]
+        public int DuracionDef { get; set; } = 15;
     }
 }

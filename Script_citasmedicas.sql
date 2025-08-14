@@ -30,7 +30,7 @@ CREATE TABLE paciente (
 CREATE TABLE especialidad (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL unique,
-    duracion_min INTEGER not null default 15
+    duracion_def INTEGER not null default 15
 );
 
 -- Tabla medico
@@ -53,6 +53,7 @@ CREATE TABLE citas (
     id_pac BIGINT NOT NULL,
     id_med BIGINT NOT NULL,
     fecha_cita DATE NOT NULL,
+    duracion INT NOT NULL,
     hora TIME WITHOUT TIME ZONE NOT null,
 
     CONSTRAINT fk_paciente foreign KEY (id_pac) REFERENCES paciente(id) ON DELETE CASCADE,
@@ -65,7 +66,7 @@ CREATE INDEX idx_citas_id_med ON citas(id_med);
 CREATE INDEX idx_citas_fecha_cita ON citas(fecha_cita);
 
 -- Registros de prueba
-INSERT INTO especialidad (nombre, duracion_min) VALUES
+INSERT INTO especialidad (nombre, duracion_def) VALUES
 ('Pediatría', 30),
 ('Medicina Interna', 45),
 ('Dermatología', 20);
@@ -83,8 +84,8 @@ INSERT INTO paciente (id, nombre, fecha_nac, tipo_doc, genero, celular, password
 (100000003, 'Carlos Sánchez', '1985-12-03', 'CC', 'Masculino', '3133333333', 'carlos789');
 
 -- Citas
-INSERT INTO citas (id_pac, id_med, fecha_cita, hora) VALUES
-(100000001, 1234567890, '2025-08-10', '09:00'),
-(100000002, 1122334455, '2025-08-11', '11:00'),
-(100000003, 9988776655, '2025-08-12', '15:30'),
-(100000001, 9988776655, '2025-08-13', '14:00');
+INSERT INTO citas (id_pac, id_med, fecha_cita, duracion, hora) VALUES
+(100000001, 1234567890, '2025-08-10','30', '09:00'),
+(100000002, 1122334455, '2025-08-11','45', '11:00'),
+(100000003, 9988776655, '2025-08-12','20', '15:30'),
+(100000001, 9988776655, '2025-08-13','30', '14:00');

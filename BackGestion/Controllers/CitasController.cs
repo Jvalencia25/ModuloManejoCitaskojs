@@ -18,9 +18,9 @@ namespace BackGestion.Controllers
         }
 
         [HttpGet("disponibilidad")]
-        public async Task<IActionResult> ObtenerDisponibilidad([FromQuery] long idMedico, [FromQuery] DateOnly fecha)
+        public async Task<IActionResult> ObtenerDisponibilidad([FromQuery] long idMedico, [FromQuery] int duracion, [FromQuery] DateOnly fecha)
         {
-            var result = await _citaService.VerDisponibilidad(fecha, idMedico);
+            var result = await _citaService.VerDisponibilidad(fecha, idMedico, duracion);
             if (result == null) NotFound();
 
             return Ok(result);

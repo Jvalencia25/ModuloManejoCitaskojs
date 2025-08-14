@@ -129,6 +129,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Vistas\Medico.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />

@@ -182,6 +182,22 @@ function PacienteViewModel() {
         })
     }
 
+    self.citas.subscribe(function (nuevaLista) {
+        if (nuevaLista.length > 0) {
+            $('#tablaCitas').DataTable({
+                data: self.citas(),
+                destroy: true,
+                columns: [
+                    { data: 'especialidad', title: 'Especialidad' },
+                    { data: 'fechaCita', title: 'Fecha' },
+                    { data: 'hora', title: 'Hora' },
+                    { data: 'duracion', title: 'Duración' },
+                    { data: 'nombreMedico', title: 'Médico'}
+                ]
+            });
+        }
+    })
+
     self.getCitas = function () {
         $.ajax({
             url: "https://localhost:44345/api/Citas/paciente/" + self.usuario.id(),
@@ -224,4 +240,6 @@ fechaInput.addEventListener('input', function (e) {
         alert('No hay disponibilidad los domingos');
     }
 });
+
+
 

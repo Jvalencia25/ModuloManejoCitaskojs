@@ -10,6 +10,7 @@
         <script src="/Scripts/knockout-3.5.1.js"></script>
         <script src="/Scripts/knockout.mapping-latest.js"></script>
         <script src="/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="/Scripts/jquery.dataTables.min.js""></script>
         <link rel="stylesheet" type="text/css" href="/Content/Estilos/Paciente.css" />
         <link rel="stylesheet" type="text/css" href="/Content/Estilos/General.css" />
     </head>
@@ -21,17 +22,17 @@
             <!-- Lista de citas pendientes -->
             <div class="card p-4 shadow w-100 mb-4">
                 <h2 class="text-center mb-3">Citas pendientes</h2>
-                <ul class="list-group p-4" data-bind="foreach: citas">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>
-                            <strong data-bind="text: especialidad"></strong> -
-                            <span data-bind="text: fechaCita"></span> a las
-                            <span data-bind="text: hora"></span> con duración de 
-                            <span data-bind="text: duracion"></span> minutos
-                        </span>
-                        <button class="btn btn-sm btn-outline-danger" data-bind="click: $parent.cancelarCita">Cancelar</button>
-                    </li>
-                </ul>
+                <table id="tablaCitas" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Especialidad</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Duracion</th>
+                            <th>Medico</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
 
             <!-- Formulario de agendar cita -->

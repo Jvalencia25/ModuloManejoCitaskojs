@@ -17,37 +17,7 @@
     <body class="bg-light min-vh-100 py-4">
 
         <h1 class="text-center mb-4 text-primary">Gestión de citas: <span class="fw-bold" data-bind="text: usuario.nombre"></span></h1>
-        <!-- Lista de citas -->
-        <div class="container">
-            <div class="card p-4 mb-4 shadow">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover align-middle text-center">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Fecha y hora</th>
-                                <th>Especialidad</th>
-                                <th>Paciente</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: citas">
-                            <tr>
-                                <td>
-                                    <span data-bind="text: fechaCita"></span> -
-                                    <span data-bind="text: hora"></span>
-                                </td>
-                                <td data-bind="text: especialidad"></td>
-                                <td data-bind="text: nombrePaciente"></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-danger" data-bind="click: $parent.eliminarCita">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+        
         <!-- Filtro -->
         <div class="container">
             <div class="card p-4 mb-4 shadow">
@@ -69,10 +39,78 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-danger align" data-bind="click: cerrarSesion">Cerrar sesión</button>
+            
+        </div>
+        
+        <!-- Lista de citas -->
+        <div class="container">
+            <div class="card p-4 mb-4 shadow">
+                <h4 class="mb-3">Filtrar citas en un rango de fechas</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Fecha y hora</th>
+                                <th>Especialidad</th>
+                                <th>Duracion (min)</th>
+                                <th>Paciente</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: citas">
+                            <tr>
+                                <td>
+                                    <span data-bind="text: fechaCita"></span> -
+                                    <span data-bind="text: hora"></span>
+                                </td>
+                                <td data-bind="text: especialidad"></td>
+                                <td data-bind="text: duracion"></td>
+                                <td data-bind="text: nombrePaciente"></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" data-bind="click: $parent.eliminarCita">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
-       
+        <!-- Formulario de agendar cita -->
+        <div class="container">
+            <div class="card p-4 mb-4 shadow" data-bind="with: agendarCita">
+                <h2 class="text-center mb-3">Agendar nueva cita</h2>
+                <form>
+
+                    <div class="mb-3">
+                        <label class="form-label">Escribe el id del paciente:</label>
+                        <input type="number" class="form-control" data-bind="value: idPaciente" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Duracion (en minutos):</label>
+                        <input type="number" class="form-control" data-bind="value: duracion" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona una fecha:</label>
+                        <input type="date" id="fechaInput" class="form-control" data-bind="value: fechaCita, enable: duracion() > 15" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona la hora:</label>
+                        <select class="form-select" data-bind="options: horasDisponibles, 
+                                           value: horaSeleccionada, 
+                                           optionsCaption: 'Seleccione una hora',
+                                            enable: fechaCita">
+                        </select>
+                    </div>
+
+                    <button type="submit" data-bind="click: agendar" class="btn btn-success w-100">Agendar</button>
+                </form>
+            </div>
+             <button class="btn btn-danger align" data-bind="click: cerrarSesion">Cerrar sesión</button>
+        </div>
 
         <script src="/Scripts/viewmodels/medicoViewModel.js"></script>
     </body>

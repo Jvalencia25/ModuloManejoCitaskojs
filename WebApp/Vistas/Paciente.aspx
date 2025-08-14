@@ -26,7 +26,8 @@
                         <span>
                             <strong data-bind="text: especialidad"></strong> -
                             <span data-bind="text: fechaCita"></span> a las
-                            <span data-bind="text: hora"></span>
+                            <span data-bind="text: hora"></span> con duración de 
+                            <span data-bind="text: duracion"></span> minutos
                         </span>
                         <button class="btn btn-sm btn-outline-danger" data-bind="click: $parent.cancelarCita">Cancelar</button>
                     </li>
@@ -42,7 +43,6 @@
                         <label class="form-label">Selecciona la especialidad</label>
                         <select class="form-select" data-bind="options: especialidades, 
                                            optionsText: 'nombre',
-                                           optionsValue: 'nombre',
                                            value: especialidadSeleccionada, 
                                            optionsCaption: 'Seleccione una especialidad'">
                         </select>

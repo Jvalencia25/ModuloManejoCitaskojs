@@ -42,6 +42,7 @@ function PacienteViewModel() {
             type: "GET",
             success: function (data) {
                 ko.mapping.fromJS(data, {}, self.agendarCita.especialidades);
+                //console.log(data)
             },
             error: function (xhr) {
                 alert("Error al obtener especialidades: " + xhr.responseText);
@@ -50,38 +51,54 @@ function PacienteViewModel() {
     };
 
     // Obtener médicos al seleccionar especialidad
-    self.agendarCita.especialidadSeleccionada.subscribe(function (nombreEspecialidad) {
-        if (!nombreEspecialidad) {
-            ko.mapping.fromJS([], {}, self.agendarCita.medicos);
+    self.getMedicos = function (especialidad) {
+        const esp = especialidad || self.agendarCita.especialidadSeleccionada();
+
+        if (!esp) {
+            self.agendarCita.medicos([]);
+            self.agendarCita.medicoSeleccionado && self.agendarCita.medicoSeleccionado(null);
+            return;
+        }
+
+        const nombre = ko.unwrap(esp.nombre);
+        if (!nombre) {
+            self.agendarCita.medicos([]);
             return;
         }
 
         $.ajax({
-            url: "https://localhost:44345/api/Usuarios/medicos/" + nombreEspecialidad,
+            url: "https://localhost:44345/api/Usuarios/medicos/" + nombre,
             type: "GET",
             success: function (data) {
                 ko.mapping.fromJS(data, {}, self.agendarCita.medicos);
-                //console.log(data)
+                console.log(data)
             },
             error: function (xhr) {
                 alert("Error al obtener médicos: " + xhr.responseText);
             }
         })
-    })
+    }
+
 
     // Obtener fechas disponibles
-    self.agendarCita.fechaCita.subscribe(function () {
-
+    self.getHorasDisponibles = function () {
+        
         const medicoSel = self.agendarCita.medicoSeleccionado();
         const fechaSel = self.agendarCita.fechaCita();
 
-        if (!medicoSel || !fechaSel) return;
+        const dur = ko.unwrap(self.agendarCita.especialidadSeleccionada()?.duracionDef);
+
+        //console.log(medicoSel + fechaSel + dur)
+
+        if (!medicoSel || !fechaSel || !dur) return;
 
         const medicoId = typeof medicoSel === "object" ? medicoSel.id() : medicoSel;
 
         $.ajax({
             url: "https://localhost:44345/api/Citas/disponibilidad/?idMedico="
                 + medicoId
+                + "&duracion="
+                + dur
                 + "&fecha="
                 + fechaSel,
             type: "GET",
@@ -93,7 +110,29 @@ function PacienteViewModel() {
                 alert("Error al obtener horas: " + xhr.responseText);
             }
         })
-    })
+    }
+
+    self.agendarCita.especialidadSeleccionada.subscribe(function (esp) {
+        self.agendarCita.medicos([]);
+        self.agendarCita.medicoSeleccionado && self.agendarCita.medicoSeleccionado(null);
+        self.agendarCita.fechaCita && self.agendarCita.fechaCita(null);
+        self.agendarCita.horasDisponibles && self.agendarCita.horasDisponibles([]);
+        self.agendarCita.horaSeleccionada && self.agendarCita.horaSeleccionada(null);
+
+        self.getMedicos(esp);
+    });
+
+    self.agendarCita.medicoSeleccionado.subscribe(function () {
+        self.agendarCita.fechaCita(null);
+        self.agendarCita.horasDisponibles([]);
+        self.agendarCita.horaSeleccionada(null);
+    });
+
+    self.agendarCita.fechaCita.subscribe(function () {
+        self.agendarCita.horasDisponibles([]);
+        self.agendarCita.horaSeleccionada(null);
+        self.getHorasDisponibles();
+    });
 
     self.agendar = function () {
 
@@ -101,8 +140,9 @@ function PacienteViewModel() {
         const medicoSel = self.agendarCita.medicoSeleccionado();
         const fechaSel = self.agendarCita.fechaCita();
         const horaSel = self.agendarCita.horaSeleccionada();
+        const dur = ko.unwrap(self.agendarCita.especialidadSeleccionada()?.duracionDef);
 
-        if (!medicoSel || !fechaSel || !pacienteId || !horaSel) {
+        if (!medicoSel || !fechaSel || !pacienteId || !horaSel || !dur) {
             alert("Error de datos");
             return;
         }
@@ -113,10 +153,11 @@ function PacienteViewModel() {
             idPac: pacienteId,
             idMed: medicoId,
             FechaCita: fechaSel,
-            Hora: horaSel
+            Hora: horaSel,
+            duracion: dur
         };
             
-        console.log(body)
+        //console.log(body)
 
         $.ajax({
             url: "https://localhost:44345/api/Citas",

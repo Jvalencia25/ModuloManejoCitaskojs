@@ -54,11 +54,13 @@ function RegistroForm() {
     ko.mapping.fromJS(model, {}, self);
 
     self.getEspecialidades = function () {
+        //(console.log("obteniendo especialidades"))
         $.ajax({
             url: "https://localhost:44345/api/Usuarios/especialidades",
             type: "GET",
             success: function (data) {
-                data => self.especialidades(data);
+                ko.mapping.fromJS(data, {}, self.especialidades);
+                //console.log(data);
             },
             error: function (xhr) {
                 alert("Error al obtener especialidades: " + xhr.responseText);
@@ -68,6 +70,7 @@ function RegistroForm() {
 
 
     self.tipoUsuario.subscribe(function (nuevoValor) {
+        console.log("holaaa");
         if (nuevoValor === 'medico') {
             self.getEspecialidades();
         } else {

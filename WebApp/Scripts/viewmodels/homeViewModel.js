@@ -81,19 +81,19 @@ function RegistroForm() {
 
     self.registrar = function () {
         if (!self.idRegistro() || !/^[0-9]+$/.test(self.idRegistro()) || self.idRegistro().length < 6) {
-            alert("N˙mero de identificaciÛn no v·lido");
+            alert("N√∫mero de identificaci√≥n no v√°lido");
             return;
         }
 
         if (!self.nombre() || self.nombre().length < 3) {
-            alert("Nombre no v·lido");
+            alert("Nombre no v√°lido");
             return;
         }
 
         const hoy = new Date().toISOString().split('T')[0];
 
         if (!self.fechaNacimiento() || self.fechaNacimiento() > hoy) {
-            alert("Fecha no v·lida");
+            alert("Fecha no v√°lida");
             return;
         }
 
@@ -103,12 +103,12 @@ function RegistroForm() {
             self.tipoDocumento() != "ce" &&
             self.tipoDocumento() != "pa") {
 
-            alert("Tipo de documento no v·lido");
+            alert("Tipo de documento no v√°lido");
             return;
         }
 
         if (self.tipoUsuario() != "medico" && self.tipoUsuario() != "paciente") {
-            alert("Tipo de usuario no v·lido");
+            alert("Tipo de usuario no v√°lido");
             return;
         }
 
@@ -116,17 +116,17 @@ function RegistroForm() {
             self.genero() != "f" &&
             self.genero() != "o") {
 
-            alert("GÈnero no v·lido");
+            alert("G√©nero no v√°lido");
             return;
         }
 
         if (!self.celular() || !/^[0-9]+$/.test(self.celular()) || self.celular().length < 7) {
-            alert("N˙mero de celular no v·lido");
+            alert("N√∫mero de celular no v√°lido");
             return;
         }
 
         if (!self.passwordRegistro() || self.passwordRegistro().length < 6) {
-            alert("La contraseÒa no es segura");
+            alert("La contrase√±a no es segura");
             return;
         }
 

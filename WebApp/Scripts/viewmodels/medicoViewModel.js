@@ -133,7 +133,7 @@ function MedicoViewModel() {
             success: function (data) {
                 console.log("Respuesta API: ", data);
 
-                alert("Cita agendada correctamente para el día "
+                alert("Cita agendada correctamente para el dÃ­a "
                     + fechaSel
                     + " A las "
                     + horaSel);

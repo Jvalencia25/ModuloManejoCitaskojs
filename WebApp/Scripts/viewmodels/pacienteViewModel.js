@@ -50,7 +50,7 @@ function PacienteViewModel() {
         })
     };
 
-    // Obtener médicos al seleccionar especialidad
+    // Obtener mÃ©dicos al seleccionar especialidad
     self.getMedicos = function (especialidad) {
         const esp = especialidad || self.agendarCita.especialidadSeleccionada();
 
@@ -74,7 +74,7 @@ function PacienteViewModel() {
                 console.log(data)
             },
             error: function (xhr) {
-                alert("Error al obtener médicos: " + xhr.responseText);
+                alert("Error al obtener mÃ©dicos: " + xhr.responseText);
             }
         })
     }
@@ -168,7 +168,7 @@ function PacienteViewModel() {
             success: function (data) {
                 console.log("Respuesta API: ", data);
 
-                alert("Cita agendada correctamente para el día "
+                alert("Cita agendada correctamente para el dÃ­a "
                     + fechaSel
                     + " A las "
                     + horaSel);
@@ -184,15 +184,20 @@ function PacienteViewModel() {
 
     self.citas.subscribe(function (nuevaLista) {
         if (nuevaLista.length > 0) {
-            $('#tablaCitas').DataTable({
-                data: self.citas(),
-                destroy: true,
+            $('#tablaCitas').dxDataGrid({
+                dataSource: self.citas(),
+                keyExpr: "idCita",
+                showBorders: true,
+                columnAutoWidth: true,
+                rowAlternationEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
                 columns: [
-                    { data: 'especialidad', title: 'Especialidad' },
-                    { data: 'fechaCita', title: 'Fecha' },
-                    { data: 'hora', title: 'Hora' },
-                    { data: 'duracion', title: 'Duración' },
-                    { data: 'nombreMedico', title: 'Médico'}
+                    { dataField: 'especialidad', caption: 'Especialidad' },
+                    { dataField: 'fechaCita', caption: 'Fecha' },
+                    { dataField: 'hora', caption: 'Hora' },
+                    { dataField: 'duracion', caption: 'DuraciÃ³n (en minutos)', alignment: 'left' },
+                    { dataField: 'nombreMedico', caption: 'MÃ©dico' }
                 ]
             });
         }

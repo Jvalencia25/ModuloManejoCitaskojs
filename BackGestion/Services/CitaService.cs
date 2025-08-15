@@ -3,6 +3,7 @@ using BackGestion.DTO;
 using BackGestion.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BackGestion.Services
 {
@@ -204,6 +205,27 @@ namespace BackGestion.Services
                 .CountAsync();
 
             return cantidadCitas < 2;
+        }
+
+        public async Task<bool> EditarCitaAsync(long idCita, DateOnly fecha, TimeOnly hora, int duracion)
+        {
+
+            var cita = await _context.Citas.FindAsync(idCita);
+            if (cita == null) return false;
+
+            if (!await ValidarDisponibilidad(cita.IdMed, fecha, hora, duracion)) return false;
+
+            if (!await ValidarLimiteCitasPorDia(cita.IdPac, fecha)) return false;
+
+            cita.FechaCita = fecha;
+            cita.Hora = hora;
+            cita.Duracion = duracion;
+
+            _context.Citas.Update(cita);
+            await _context.SaveChangesAsync();
+
+            return true;
+
         }
 
         public async Task<bool> DeleteCita(long id)

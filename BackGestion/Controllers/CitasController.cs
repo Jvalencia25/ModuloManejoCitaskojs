@@ -78,6 +78,16 @@ namespace BackGestion.Controllers
             return Ok(citas);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditarCita(long id, [FromQuery] DateOnly fecha, [FromQuery] TimeOnly hora, [FromQuery] int duracion)
+        {
+            var res = await _citaService.EditarCitaAsync(id, fecha, hora, duracion);
+
+            if (!res) return NotFound(new { mensaje = "Cita no encontrada" });
+
+            return Ok(new { mensaje = "Cita actualizada correctamente" });
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCita(long id)
         {

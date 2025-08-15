@@ -183,24 +183,24 @@ function PacienteViewModel() {
     }
 
     self.citas.subscribe(function (nuevaLista) {
-        if (nuevaLista.length > 0) {
-            $('#tablaCitas').dxDataGrid({
-                dataSource: self.citas(),
-                keyExpr: "idCita",
-                showBorders: true,
-                columnAutoWidth: true,
-                rowAlternationEnabled: true,
-                showColumnLines: true,
-                showRowLines: true,
-                columns: [
-                    { dataField: 'especialidad', caption: 'Especialidad' },
-                    { dataField: 'fechaCita', caption: 'Fecha' },
-                    { dataField: 'hora', caption: 'Hora' },
-                    { dataField: 'duracion', caption: 'Duración (en minutos)', alignment: 'left' },
-                    { dataField: 'nombreMedico', caption: 'Médico' }
-                ]
-            });
-        }
+        $('#tablaCitas').dxDataGrid({
+            dataSource: self.citas(),
+            keyExpr: "idCita",
+            showBorders: true,
+            columnAutoWidth: true,
+            rowAlternationEnabled: true,
+            showColumnLines: true,
+            showRowLines: true,
+            noDataText: "No hay citas pendientes",
+            columns: [
+                { dataField: 'especialidad', caption: 'Especialidad' },
+                { dataField: 'fechaCita', caption: 'Fecha' },
+                { dataField: 'hora', caption: 'Hora' },
+                { dataField: 'duracion', caption: 'Duración (en minutos)', alignment: 'left' },
+                { dataField: 'nombreMedico', caption: 'Médico' }
+            ]
+        });
+        
     })
 
     self.getCitas = function () {

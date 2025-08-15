@@ -162,6 +162,47 @@ function MedicoViewModel() {
         })
     }
 
+    self.citas.subscribe(function (nuevaLista) {
+        $('#tablaCitas').dxDataGrid({
+            dataSource: self.citas(),
+            keyExpr: "idCita",
+            showBorders: true,
+            columnAutoWidth: true,
+            rowAlternationEnabled: true,
+            showColumnLines: true,
+            showRowLines: true,
+            noDataText: "No hay citas pendientes para este rango de fechas",
+            columns: [
+                { dataField: 'fechaCita', caption: 'Fecha' },
+                { dataField: 'hora', caption: 'Hora' },
+                { dataField: 'duracion', caption: 'Duración (en minutos)', alignment: 'left' },
+                { dataField: 'nombrePaciente', caption: 'Paciente' },
+                {
+                    caption: "Acctiones",
+                    type: "buttons",
+                    buttons: [
+                        {
+                            hint: 'Editar',
+                            icon: 'edit',
+                            onClick: function(e) {
+                                alert("En desarrollo")
+                            }
+                        },
+                        {
+                            hint: 'Eliminar',
+                            icon: 'trash',
+                            onClick: function (e) {
+                                self.eliminarCita(e.row.data)
+                            }
+                        }
+
+                    ]
+                }
+            ]
+        });
+        
+    })
+
     self.cerrarSesion = function () {
         localStorage.removeItem("usuario");
         window.location.href = "/Vistas/Home.aspx"

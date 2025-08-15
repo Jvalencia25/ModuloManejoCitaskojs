@@ -14,3 +14,8 @@ body {
     border-radius: 1rem;
     border: 1px solid grey !important;
 }
+
+.dx-datagrid-headers .dx-header-row .dx-datagrid-text-content {
+    font-weight: bold !important;
+    
+}

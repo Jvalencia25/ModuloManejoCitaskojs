@@ -46,6 +46,15 @@ namespace BackGestion.Controllers
             return Ok(usuario);
         }
 
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchPacientes([FromQuery] string term)
+        {
+            var result = await _usuarioService.SearchPacientes(term);
+            if (result == null) return NotFound(); 
+            
+            return Ok(new { result });
+        }
+
         [HttpGet("{id}/nombre")]
         public async Task<IActionResult> ObtenerNombrePorId(long id, [FromQuery] string tipo)
         {

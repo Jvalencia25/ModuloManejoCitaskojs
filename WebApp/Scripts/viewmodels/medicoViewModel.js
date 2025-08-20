@@ -9,12 +9,13 @@ var modelo = {
     fechaHasta: new Date().toISOString().split('T')[0],
 
     agendarCita: {
-        idPaciente: "",
+        idPaciente: ko.observable(""),
         fechaCita: "",
         duracion: ko.observable(15),
         horaSeleccionada: "",
         horasDisponibles: []
     }
+
 }
 
 function MedicoViewModel() {
@@ -147,6 +148,38 @@ function MedicoViewModel() {
         })
     }
 
+    self.editarCita = function (cita) {
+        console.log("En desarrollo")
+
+        //self.agendarCita.idCita = cita.idCita; 
+        //self.agendarCita.fechaCita(cita.fechaCita);
+        //self.agendarCita.horaSeleccionada(cita.hora);
+        //self.agendarCita.duracion(cita.duracion);
+
+        //$('#modalEditarCita').modal('show');
+
+        //self.getHorasDisponibles()
+
+        //$.ajax({
+        //    url: "https://localhost:44345/api/Citas/"
+        //        + cita.idCita() 
+        //        + "$fecha="
+        //        + cita.fechaCita
+        //        + "&hora="
+        //        + cita.hora
+        //        + "&duracion="
+        //        +cita.duracion, 
+        //    type: "PUT",
+        //    success: function (data) {
+        //        alert(data);
+        //        self.getCitas();
+        //    },
+        //    error: function (xhr) {
+        //        alert("Error al editar cita: " + xhr.responseText);
+        //    }
+        //})
+    }
+
     self.eliminarCita = function (Cita) {
         console.log(Cita)
         $.ajax({
@@ -163,6 +196,7 @@ function MedicoViewModel() {
     }
 
     self.citas.subscribe(function (nuevaLista) {
+
         $('#tablaCitas').dxDataGrid({
             dataSource: self.citas(),
             keyExpr: "idCita",
@@ -185,7 +219,7 @@ function MedicoViewModel() {
                             hint: 'Editar',
                             icon: 'edit',
                             onClick: function(e) {
-                                alert("En desarrollo")
+                                self.editarCita(e.row.data)
                             }
                         },
                         {
@@ -215,6 +249,34 @@ ko.applyBindings(new MedicoViewModel());
 
 //JS
 const fechaInput = document.getElementById("fechaInput");
+
+
+
+$(document).ready(function () {
+
+    $('#selectUsuario').select2({
+        placeholder: 'Selecciona una opción',
+        minimumInputLength: 2,
+        ajax: {
+            url: "https://localhost:44345/api/Usuarios/search",
+            dataType: "json",
+            delay: 250,
+            data: function (params) {
+                return {
+                    term: params.term
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data.result
+                };
+            }
+        }
+    }).on('select2:select', function (e) {
+        var data = e.params.data;
+        modelo.agendarCita.idPaciente(data.id);
+    })
+});
 
 document.addEventListener('DOMContentLoaded', function () {
 

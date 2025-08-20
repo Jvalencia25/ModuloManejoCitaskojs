@@ -1,6 +1,7 @@
 ﻿using BackGestion.Data;
 using BackGestion.DTO;
 using BackGestion.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackGestion.Services
@@ -129,6 +130,27 @@ namespace BackGestion.Services
             }
 
             return null;
+        }
+
+        public async Task<object?> SearchPacientes(string term)
+        {
+            var query = _context.Pacientes.AsQueryable();
+
+            if (!string.IsNullOrEmpty(term))
+            {
+                query = query.Where(p =>
+                    EF.Functions.ILike(p.Nombre, $"%{term}%") ||
+                    EF.Functions.ILike(p.Id.ToString(), $"%{term}%")
+                );
+            }
+
+            var results = await query.Select(p => new
+            {
+                id = p.Id,
+                text = p.Nombre
+            }).ToListAsync();
+
+            return results;
         }
 
         public async Task<object?> ObtenerUsuarioPorIdAsync(long id, string tipo)
